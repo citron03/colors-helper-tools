@@ -1,26 +1,28 @@
 {
-  "name": "colors-helper",
-  "version": "1.0.0",
-  "description": "help use color style",
+  "name": "colors-helper-tools",
+  "version": "1.0.2",
+  "description": "help use color style ✨",
   "main": "index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "ts-node test.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/citron03/colors-helper.git"
+    "url": "git+https://github.com/citron03/colors-helper-tools.git"
   },
   "keywords": [
     "color",
-    "css"
+    "css",
+    "hex"
   ],
   "author": "citron03",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/citron03/colors-helper/issues"
+    "url": "https://github.com/citron03/colors-helper-tools/issues"
   },
-  "homepage": "https://github.com/citron03/colors-helper#readme",
+  "homepage": "https://github.com/citron03/colors-helper-tools#readme",
   "devDependencies": {
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
