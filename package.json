@@ -29,8 +29,5 @@
   },
   "engines": {
     "node": ">=14"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
