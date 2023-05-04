@@ -4,18 +4,30 @@ We help you use color 🎨
 
 ## functions
 
-- toRgb
-  <br/>
-  hex color string to rgb object
-- toHex
-  <br/>
-  make number to hex string
-- toHexColor
-  <br/>
-  make numbers to hex color string
-- complementaryColorHex
-  <br/>
-  get complementary color hex string
-- complementaryColorRgb
-  <br/>
-  get complementary color object
+### toRgb
+
+- hex color string to rgb object
+
+### toHex
+
+- make number to hex string
+
+### toHexColor
+
+- make numbers to hex color string
+
+### complementaryColorHex
+
+- get complementary color hex string
+
+### complementaryColorRgb
+
+- get complementary color object
+
+### getRandomColorHex
+
+- get random color hex string
+
+### getRandomColorRgb
+
+- get random color object

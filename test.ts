@@ -1,8 +1,19 @@
-import { complementaryColorHex, toRgb } from ".";
+import {
+  complementaryColorHex,
+  toRgb,
+  getRandomColorHex,
+  getRandomColorRgb,
+} from './index';
 
-console.log("===== test start =====");
+console.log('===== test start =====');
 
-const testHex = "#ff00ff";
+const testHex = '#ff00ff';
 
-console.log("toRgb", toRgb(testHex));
-console.log("complementaryColorHex", complementaryColorHex(testHex));
+console.log('toRgb', toRgb(testHex));
+console.log('complementaryColorHex', complementaryColorHex(testHex));
+
+const randomHex = getRandomColorHex();
+console.log('randomHex', randomHex);
+
+const randomRgb = getRandomColorRgb();
+console.log('randomRgb', randomRgb);
