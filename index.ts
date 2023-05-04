@@ -31,11 +31,11 @@ export function toRgb(hex: string): Color {
  */
 export const toHex = (color: number) => {
   if (color < 0 || color > 255) {
-    throw Error("invalid number");
+    throw Error('invalid number');
   }
   let tmp = color.toString(16);
   if (tmp.length < 2) {
-    tmp = "0" + tmp;
+    tmp = '0' + tmp;
   }
   return tmp;
 };
@@ -56,7 +56,7 @@ export function toHexColor(red: number, green: number, blue: number): string {
     blue < 0 ||
     blue > 255
   ) {
-    throw Error("invalid number");
+    throw Error('invalid number');
   }
   const hex = `#${toHex(red)}${toHex(green)}${toHex(blue)}`;
   return hex;
@@ -77,7 +77,7 @@ export function complementaryColorHex(hex: string): string {
   return toHexColor(
     complementaryColor.red,
     complementaryColor.green,
-    complementaryColor.blue
+    complementaryColor.blue,
   );
 }
 
@@ -93,4 +93,26 @@ export function complementaryColorRgb(rgb: Color): Color {
     blue: 255 - rgb.blue,
   };
   return complementaryColor;
+}
+
+/**
+ * get random color hex string
+ * @returns random hex color string
+ */
+export function getRandomColorHex(): string {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  return toHexColor(red, green, blue);
+}
+
+/**
+ * get random color object
+ * @returns random hex color object
+ */
+export function getRandomColorRgb(): Color {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  return { red, green, blue };
 }
