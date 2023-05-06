@@ -2,6 +2,16 @@
 
 We help you use color 🎨
 
+### return types are Hex string or Color type
+
+```typescript
+type Color = {
+  red: number;
+  green: number;
+  blue: number;
+};
+```
+
 ## functions
 
 ### toRgb
