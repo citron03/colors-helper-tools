@@ -3,6 +3,7 @@ import {
   toRgb,
   getRandomColorHex,
   getRandomColorRgb,
+  RandomColorType,
 } from './index';
 
 console.log('===== test start =====');
@@ -17,3 +18,6 @@ console.log('randomHex', randomHex);
 
 const randomRgb = getRandomColorRgb();
 console.log('randomRgb', randomRgb);
+
+const randomRedColorHex = getRandomColorHex(RandomColorType.red);
+console.log('random Color Red Hex', randomRedColorHex);

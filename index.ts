@@ -63,6 +63,20 @@ export function toHexColor(red: number, green: number, blue: number): string {
 }
 
 /**
+ * get complementary color object
+ * @param rgb color rgb object
+ * @returns complementary color rgb object
+ */
+export function complementaryColorRgb(rgb: Color): Color {
+  const complementaryColor = {
+    red: 255 - rgb.red,
+    green: 255 - rgb.green,
+    blue: 255 - rgb.blue,
+  };
+  return complementaryColor;
+}
+
+/**
  * get complementary color hex string
  * @param hex hex string
  * @returns complementary color hex string
@@ -81,38 +95,49 @@ export function complementaryColorHex(hex: string): string {
   );
 }
 
-/**
- * get complementary color object
- * @param rgb color rgb object
- * @returns complementary color rgb object
- */
-export function complementaryColorRgb(rgb: Color): Color {
-  const complementaryColor = {
-    red: 255 - rgb.red,
-    green: 255 - rgb.green,
-    blue: 255 - rgb.blue,
-  };
-  return complementaryColor;
-}
+// TODO: give more versatile and accurate random color options
 
-/**
- * get random color hex string
- * @returns random hex color string
- */
-export function getRandomColorHex(): string {
-  const red = Math.floor(Math.random() * 256);
-  const green = Math.floor(Math.random() * 256);
-  const blue = Math.floor(Math.random() * 256);
-  return toHexColor(red, green, blue);
+export enum RandomColorType {
+  red = 'red',
+  green = 'green',
+  blue = 'blue',
+  all = 'all',
 }
 
 /**
  * get random color object
+ * @param RandomColorType red / green / blue / all
  * @returns random hex color object
  */
-export function getRandomColorRgb(): Color {
-  const red = Math.floor(Math.random() * 256);
-  const green = Math.floor(Math.random() * 256);
-  const blue = Math.floor(Math.random() * 256);
+export function getRandomColorRgb(
+  colorType: RandomColorType = RandomColorType.all,
+): Color {
+  // default all random
+  let red = Math.floor(Math.random() * 256);
+  let green = Math.floor(Math.random() * 256);
+  let blue = Math.floor(Math.random() * 256);
+  if (colorType === RandomColorType.red) {
+    green = 0;
+    blue = 0;
+  } else if (colorType === RandomColorType.green) {
+    red = 0;
+    blue = 0;
+  } else if (colorType === RandomColorType.blue) {
+    green = 0;
+    blue = 0;
+  }
   return { red, green, blue };
+}
+
+/**
+ * get random color hex string
+ * @param RandomColorType red / green / blue / all
+ * @returns random hex color string
+ */
+export function getRandomColorHex(
+  colorType: RandomColorType = RandomColorType.all,
+): string {
+  // default all random
+  const { red, green, blue } = getRandomColorRgb(colorType);
+  return toHexColor(red, green, blue);
 }
