@@ -1,4 +1,4 @@
-# 🎨 colors-helper
+# 🎨 colors-helper-tools
 
 We help you use color.
 
