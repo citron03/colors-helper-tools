@@ -1,6 +1,6 @@
 {
   "name": "colors-helper-tools",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "help use color style ✨",
   "main": "index.ts",
   "types": "dist/index.d.ts",
