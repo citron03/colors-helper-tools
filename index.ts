@@ -1,66 +1,5 @@
-export type Color = {
-  red: number;
-  green: number;
-  blue: number;
-};
-
-/**
- * hex color string to rgb object
- * @param hex string hex (ex. #ffffff)
- * @returns {red, green, blue}
- */
-export function toRgb(hex: string): Color {
-  const rgb: Color = { red: 0, green: 0, blue: 0 };
-  for (let i = 1; i < hex.length; i += 2) {
-    const tmp = parseInt(`${hex[i]}${hex[i + 1]}`, 16);
-    if (i === 1) {
-      rgb.red = tmp;
-    } else if (i === 3) {
-      rgb.green = tmp;
-    } else if (i === 5) {
-      rgb.blue = tmp;
-    }
-  }
-  return rgb;
-}
-
-/**
- *
- * @param color 0 ~ 255
- * @returns hex string
- */
-export const toHex = (color: number) => {
-  if (color < 0 || color > 255) {
-    throw Error('invalid number');
-  }
-  let tmp = color.toString(16);
-  if (tmp.length < 2) {
-    tmp = '0' + tmp;
-  }
-  return tmp;
-};
-
-/**
- *
- * @param red 0 ~ 255
- * @param green 0 ~ 255
- * @param blue 0 ~ 255
- * @returns hex string rgb
- */
-export function toHexColor(red: number, green: number, blue: number): string {
-  if (
-    red < 0 ||
-    red > 255 ||
-    green < 0 ||
-    green > 255 ||
-    blue < 0 ||
-    blue > 255
-  ) {
-    throw Error('invalid number');
-  }
-  const hex = `#${toHex(red)}${toHex(green)}${toHex(blue)}`;
-  return hex;
-}
+import { Color, RandomColorType } from './src/types';
+import { getRandomNumber, toHexColor, toRgb } from './src/utils';
 
 /**
  * get complementary color object
@@ -97,13 +36,6 @@ export function complementaryColorHex(hex: string): string {
 
 // TODO: give more versatile and accurate random color options
 
-export enum RandomColorType {
-  red = 'red',
-  green = 'green',
-  blue = 'blue',
-  all = 'all',
-}
-
 /**
  * get random color object
  * @param RandomColorType red / green / blue / all
@@ -113,9 +45,9 @@ export function getRandomColorRgb(
   colorType: RandomColorType = RandomColorType.all,
 ): Color {
   // default all random
-  let red = Math.floor(Math.random() * 256);
-  let green = Math.floor(Math.random() * 256);
-  let blue = Math.floor(Math.random() * 256);
+  let red = getRandomNumber(0, 255);
+  let green = getRandomNumber(0, 255);
+  let blue = getRandomNumber(0, 255);
   if (colorType === RandomColorType.red) {
     green = 0;
     blue = 0;
@@ -140,4 +72,24 @@ export function getRandomColorHex(
   // default all random
   const { red, green, blue } = getRandomColorRgb(colorType);
   return toHexColor(red, green, blue);
+}
+
+/**
+ * get random pastel tone color rgb (207 ~ 255)
+ * @returns {red, green, blue}
+ */
+export function pasteltoneRgb(): Color {
+  const red = getRandomNumber(207, 255);
+  const green = getRandomNumber(207, 255);
+  const blue = getRandomNumber(207, 255);
+  return { red, green, blue };
+}
+
+/**
+ * get random pastel tone color hex string (207 ~ 255)
+ * @returns pastel tone color hex string
+ */
+export function pasteltoneHex(): string {
+  const pastelRgb = pasteltoneRgb();
+  return toHexColor(pastelRgb.red, pastelRgb.green, pastelRgb.blue);
 }

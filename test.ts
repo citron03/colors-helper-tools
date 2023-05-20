@@ -1,12 +1,14 @@
 import {
   complementaryColorHex,
-  toRgb,
   getRandomColorHex,
   getRandomColorRgb,
-  RandomColorType,
+  pasteltoneHex,
+  pasteltoneRgb,
 } from './index';
+import { RandomColorType } from './src/types';
+import { toRgb } from './src/utils';
 
-console.log('===== test start =====');
+console.log('===== test start =====\n');
 
 const testHex = '#ff00ff';
 
@@ -21,3 +23,11 @@ console.log('randomRgb', randomRgb);
 
 const randomRedColorHex = getRandomColorHex(RandomColorType.red);
 console.log('random Color Red Hex', randomRedColorHex);
+
+const pastelColorRgb = pasteltoneRgb();
+console.log('random pastel color rgb', pastelColorRgb);
+
+const pastelColorHex = pasteltoneHex();
+console.log('random pastel color hex', pastelColorHex);
+
+console.log('\n===== test end =====');

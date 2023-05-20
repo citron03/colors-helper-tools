@@ -2,6 +2,22 @@
 
 We help you use color.
 
+## Version Info
+
+| version | node version |
+| ------- | ------------ |
+| 1.0.0+  | 14+          |
+
+## Installation
+
+```bash
+# npm
+$ npm install --save colors-helper-tools
+
+# yarn
+$ yarn add colors-helper-tools
+```
+
 ### return types are Hex string or Color type
 
 ```typescript
@@ -54,3 +70,13 @@ export enum RandomColorType {
 
 - get random color object
 - give params (red, green, blue) to get concrete random color object
+
+### pasteltoneRgb
+
+- get random pastel tone color
+- return Color type
+
+### pasteltoneHex
+
+- get random pastel tone color
+- return hex string
