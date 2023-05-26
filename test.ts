@@ -1,5 +1,7 @@
 import {
   complementaryColorHex,
+  getColorByStepHex,
+  getColorByStepRgb,
   getRandomColorHex,
   getRandomColorRgb,
   pasteltoneHex,
@@ -29,5 +31,13 @@ console.log('random pastel color rgb', pastelColorRgb);
 
 const pastelColorHex = pasteltoneHex();
 console.log('random pastel color hex', pastelColorHex);
+
+const genRgb = getColorByStepRgb(20)();
+console.log('rgb step 1 :', genRgb.next().value);
+console.log('rgb step 2 :', genRgb.next().value);
+
+const genHex = getColorByStepHex(50)();
+console.log('hex step 1 :', genHex.next().value);
+console.log('hex step 2 :', genHex.next().value);
 
 console.log('\n===== test end =====');

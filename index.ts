@@ -93,3 +93,51 @@ export function pasteltoneHex(): string {
   const pastelRgb = pasteltoneRgb();
   return toHexColor(pastelRgb.red, pastelRgb.green, pastelRgb.blue);
 }
+
+/**
+ *
+ * @param step number that color step. The higher the number, the greater the color variation with each call.
+ * @returns Generator that yield Color object
+ */
+export function getColorByStepRgb(
+  step: number = 5,
+): () => Generator<Color, never, unknown> {
+  if (step > 255) {
+    throw new Error('step must be lower than 256');
+  } else if (step < 0) {
+    throw new Error('step must be greater than 0');
+  }
+  const color: Color = { red: 0, green: 0, blue: 0 };
+  return function* () {
+    while (true) {
+      color.red = color.red + step <= 255 ? color.red + step : 0;
+      color.green = color.green + step <= 255 ? color.green + step : 0;
+      color.blue = color.blue + step <= 255 ? color.blue + step : 0;
+      yield color;
+    }
+  };
+}
+
+/**
+ *
+ * @param step number that color step. The higher the number, the greater the color variation with each call. (0 < step < 256)
+ * @returns Generator that yield hex color string
+ */
+export function getColorByStepHex(
+  step: number = 5,
+): () => Generator<string, never, unknown> {
+  if (step > 255) {
+    throw new Error('step must be lower than 256');
+  } else if (step < 0) {
+    throw new Error('step must be greater than 0');
+  }
+  const color: Color = { red: 0, green: 0, blue: 0 };
+  return function* () {
+    while (true) {
+      color.red = color.red + step <= 255 ? color.red + step : 0;
+      color.green = color.green + step <= 255 ? color.green + step : 0;
+      color.blue = color.blue + step <= 255 ? color.blue + step : 0;
+      yield toHexColor(color.red, color.green, color.blue);
+    }
+  };
+}
