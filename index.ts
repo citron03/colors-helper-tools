@@ -96,11 +96,11 @@ export function pasteltoneHex(): string {
 
 /**
  *
- * @param step number that color step. The higher the number, the greater the color variation with each call.
- * @returns Generator that yield Color object
+ * @param step Takes a step(number) and returns a generator function
+ * @returns Returns the generator function. Each time the generator function is called, it returns a Color rgb object that is as dark as the input step.
  */
-export function getColorByStepRgb(
-  step: number = 5,
+export function getColorByStepRgbGen(
+  step: number,
 ): () => Generator<Color, never, unknown> {
   if (step > 255) {
     throw new Error('step must be lower than 256');
@@ -120,11 +120,23 @@ export function getColorByStepRgb(
 
 /**
  *
- * @param step number that color step. The higher the number, the greater the color variation with each call. (0 < step < 256)
- * @returns Generator that yield hex color string
+ * @param step Input the step(number) to be used in the generator function.
+ * @returns Automatically returns a progressively darker Color rgb object when calling the function so that you can use this feature without understanding generator functions.
  */
-export function getColorByStepHex(
-  step: number = 5,
+export function getColorByStepRgb(step: number = 5) {
+  const generator = getColorByStepRgbGen(step)();
+  return function () {
+    return generator.next().value;
+  };
+}
+
+/**
+ *
+ * @param step Takes a step(number) and returns a generator function
+ * @returns Returns the generator function. Each time the generator function is called, it returns a color hex string that is as dark as the input step.
+ */
+export function getColorByStepHexGen(
+  step: number,
 ): () => Generator<string, never, unknown> {
   if (step > 255) {
     throw new Error('step must be lower than 256');
@@ -139,5 +151,17 @@ export function getColorByStepHex(
       color.blue = color.blue + step <= 255 ? color.blue + step : 0;
       yield toHexColor(color.red, color.green, color.blue);
     }
+  };
+}
+
+/**
+ *
+ * @param step Input the step(number) to be used in the generator function.
+ * @returns Automatically returns a progressively darker color hex string when calling the function so that you can use this feature without understanding generator functions.
+ */
+export function getColorByStepHex(step: number = 5) {
+  const generator = getColorByStepHexGen(step)();
+  return function () {
+    return generator.next().value;
   };
 }
