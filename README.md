@@ -128,3 +128,5 @@ for (let i = 0; i < 10; i++) {
 #### 🎈 examples
 
 - <a href="./examples/emotion_example.tsx">emotion</a>
+- <a href="./examples/jsx_inline_example.tsx">jsx_inline</a>
+- <a href="./examples/react_memo_example.tsx">react_memo</a>
