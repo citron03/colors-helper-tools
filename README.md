@@ -81,25 +81,47 @@ export enum RandomColorType {
 - get random pastel tone color
 - return hex string
 
-### getColorByStepRgb
+### getColorByStepRgbGen
 
 - Returns a generator function that sequentially intensifies the returned Color object
 
 ```ts
-const fn = getColorByStepRgb(50)(); // generator
+const fn = getColorByStepRgbGen(50)(); // generator
 for (let i = 0; i < 10; i++) {
   console.log(fn.next().value); // Color object
 }
 ```
 
-### getColorByStepHex
+### getColorByStepHexGen
 
 - Returns a generator function that sequentially intensifies the returned color hex string
 
 ```ts
-const fn = getColorByStepHex(50)(); // generator
+const fn = getColorByStepHexGen(50)(); // generator
 for (let i = 0; i < 10; i++) {
   console.log(fn.next().value); // hex string
+}
+```
+
+### getColorByStepRgb
+
+- You can use getColorByStepRgbGen without understanding generator functions.
+
+```ts
+const fn = getColorByStepRgb(50); // function
+for (let i = 0; i < 10; i++) {
+  console.log(fn()); // Color object
+}
+```
+
+### getColorByStepHex
+
+- You can use getColorByStepHexGen without understanding generator functions.
+
+```ts
+const fn = getColorByStepHex(50); // function
+for (let i = 0; i < 10; i++) {
+  console.log(fn()); // hex string
 }
 ```
 
