@@ -6,6 +6,8 @@ import {
   getColorByStepRgbGen,
   getRandomColorHex,
   getRandomColorRgb,
+  neutraltoneHex,
+  neutraltoneRgb,
   pasteltoneHex,
   pasteltoneRgb,
 } from './index';
@@ -33,6 +35,12 @@ console.log('random pastel color rgb', pastelColorRgb);
 
 const pastelColorHex = pasteltoneHex();
 console.log('random pastel color hex', pastelColorHex);
+
+const neutralColorRgb = neutraltoneRgb();
+console.log('random neutral color rgb', neutralColorRgb);
+
+const neutralColorHex = neutraltoneHex();
+console.log('random neutral color hex', neutralColorHex);
 
 const genRgb = getColorByStepRgbGen(20)();
 console.log('rgb step 1 :', genRgb.next().value);

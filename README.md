@@ -81,6 +81,16 @@ export enum RandomColorType {
 - get random pastel tone color
 - return hex string
 
+### neutraltoneRgb
+
+- get random neutral tone color
+- return Color type
+
+### neutraltoneHex
+
+- get random neutral tone color
+- return hex string
+
 ### getColorByStepRgbGen
 
 - Returns a generator function that sequentially intensifies the returned Color object

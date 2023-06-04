@@ -95,6 +95,24 @@ export function pasteltoneHex(): string {
 }
 
 /**
+ * get random neutral tone color rgb same (r, g, b)
+ * @returns {red, green, blue}
+ */
+export function neutraltoneRgb(): Color {
+  const color = getRandomNumber(0, 255);
+  return { red: color, green: color, blue: color };
+}
+
+/**
+ * get random neutral tone color hex string same (r, g, b)
+ * @returns neutral tone color hex string
+ */
+export function neutraltoneHex(): string {
+  const color = getRandomNumber(0, 255);
+  return toHexColor(color, color, color);
+}
+
+/**
  *
  * @param step Takes a step(number) and returns a generator function
  * @returns Returns the generator function. Each time the generator function is called, it returns a Color rgb object that is as dark as the input step.
