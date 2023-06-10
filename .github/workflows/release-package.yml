@@ -19,10 +19,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: npm install pacakges
-        run: npm install
-      - name: build npm packages
-        run: npm run build
       - name: try npm login
         run: npm login --registry=https://registry.npmjs.org/ --scope=@your-scope --always-auth
 
