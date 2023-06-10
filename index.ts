@@ -1,5 +1,10 @@
 import { Color, RandomColorType, RgbOrder } from './src/types';
-import { getRandomNumber, toHexColor, toRgb } from './src/utils';
+import {
+  checkRangeColor,
+  getRandomNumber,
+  toHexColor,
+  toRgb,
+} from './src/utils';
 
 /**
  * get complementary color object
@@ -130,13 +135,15 @@ export function getColorByStepRgbGen(
   return function* () {
     while (true) {
       if (order === 'red') {
-        color.red = color.red + step <= 255 ? color.red + step : 0;
+        color.red = checkRangeColor(color.red + step) ? color.red + step : 0;
         order = 'green';
       } else if (order === 'green') {
-        color.green = color.green + step <= 255 ? color.green + step : 0;
+        color.green = checkRangeColor(color.green + step)
+          ? color.green + step
+          : 0;
         order = 'blue';
       } else if (order === 'blue') {
-        color.blue = color.blue + step <= 255 ? color.blue + step : 0;
+        color.blue = checkRangeColor(color.blue + step) ? color.blue + step : 0;
         order = 'red';
       } else {
         throw Error('unexpected RGB order');
@@ -176,13 +183,15 @@ export function getColorByStepHexGen(
   return function* () {
     while (true) {
       if (order === 'red') {
-        color.red = color.red + step <= 255 ? color.red + step : 0;
+        color.red = checkRangeColor(color.red + step) ? color.red + step : 0;
         order = 'green';
       } else if (order === 'green') {
-        color.green = color.green + step <= 255 ? color.green + step : 0;
+        color.green = checkRangeColor(color.green + step)
+          ? color.green + step
+          : 0;
         order = 'blue';
       } else if (order === 'blue') {
-        color.blue = color.blue + step <= 255 ? color.blue + step : 0;
+        color.blue = checkRangeColor(color.blue + step) ? color.blue + step : 0;
         order = 'red';
       } else {
         throw Error('unexpected RGB order');

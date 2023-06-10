@@ -66,4 +66,13 @@ function toRgb(hex: string): Color {
   return rgb;
 }
 
-export { getRandomNumber, toRgb, toHex, toHexColor };
+/**
+ *
+ * @param num color number (0 ~ 255)
+ * @returns boolean
+ */
+function checkRangeColor(num: number) {
+  return num <= 255 && num >= 0;
+}
+
+export { getRandomNumber, toRgb, toHex, toHexColor, checkRangeColor };
