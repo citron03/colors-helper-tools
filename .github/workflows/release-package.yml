@@ -14,13 +14,15 @@ jobs:
           node-version: 14
       - run: npm ci
       - run: npm test
+      - run: npm install
+      - run: npm run build
 
   login-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: try npm login
-        run: npm login --registry=https://registry.npmjs.org/ --scope=@your-scope --always-auth
+      - name: config npm login
+        run: npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.NPM_TOKEN }}
 
   publish-gpr:
     needs: login-npm
