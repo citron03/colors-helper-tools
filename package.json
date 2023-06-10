@@ -1,8 +1,8 @@
 {
   "name": "colors-helper-tools",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "help use color style ✨",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
