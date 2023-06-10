@@ -11,4 +11,6 @@ enum RandomColorType {
   all = 'all',
 }
 
-export { Color, RandomColorType };
+type RgbOrder = 'red' | 'green' | 'blue';
+
+export { Color, RandomColorType, RgbOrder };

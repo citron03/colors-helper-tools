@@ -1,4 +1,4 @@
-import { Color, RandomColorType } from './src/types';
+import { Color, RandomColorType, RgbOrder } from './src/types';
 import { getRandomNumber, toHexColor, toRgb } from './src/utils';
 
 /**
@@ -126,11 +126,21 @@ export function getColorByStepRgbGen(
     throw new Error('step must be greater than 0');
   }
   const color: Color = { red: 0, green: 0, blue: 0 };
+  let order: RgbOrder = 'red';
   return function* () {
     while (true) {
-      color.red = color.red + step <= 255 ? color.red + step : 0;
-      color.green = color.green + step <= 255 ? color.green + step : 0;
-      color.blue = color.blue + step <= 255 ? color.blue + step : 0;
+      if (order === 'red') {
+        color.red = color.red + step <= 255 ? color.red + step : 0;
+        order = 'green';
+      } else if (order === 'green') {
+        color.green = color.green + step <= 255 ? color.green + step : 0;
+        order = 'blue';
+      } else if (order === 'blue') {
+        color.blue = color.blue + step <= 255 ? color.blue + step : 0;
+        order = 'red';
+      } else {
+        throw Error('unexpected RGB order');
+      }
       yield color;
     }
   };
@@ -162,11 +172,21 @@ export function getColorByStepHexGen(
     throw new Error('step must be greater than 0');
   }
   const color: Color = { red: 0, green: 0, blue: 0 };
+  let order: RgbOrder = 'red';
   return function* () {
     while (true) {
-      color.red = color.red + step <= 255 ? color.red + step : 0;
-      color.green = color.green + step <= 255 ? color.green + step : 0;
-      color.blue = color.blue + step <= 255 ? color.blue + step : 0;
+      if (order === 'red') {
+        color.red = color.red + step <= 255 ? color.red + step : 0;
+        order = 'green';
+      } else if (order === 'green') {
+        color.green = color.green + step <= 255 ? color.green + step : 0;
+        order = 'blue';
+      } else if (order === 'blue') {
+        color.blue = color.blue + step <= 255 ? color.blue + step : 0;
+        order = 'red';
+      } else {
+        throw Error('unexpected RGB order');
+      }
       yield toHexColor(color.red, color.green, color.blue);
     }
   };
