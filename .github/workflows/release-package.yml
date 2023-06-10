@@ -17,6 +17,7 @@ jobs:
 
   login-npm:
     needs: build
+    runs-on: ubuntu-latest
     steps:
       - name: npm install pacakges
         run: npm install
