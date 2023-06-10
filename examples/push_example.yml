@@ -1,0 +1,33 @@
+name: NPM 배포
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 코드
+        uses: actions/checkout@v2
+
+      - name: Node.js 설치
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: 패키지 의존성 설치
+        run: npm install
+
+      - name: 패키지 빌드
+        run: npm run build
+
+      - name: npm 로그인
+        run: npm login --registry=https://registry.npmjs.org/ --scope=@your-scope --always-auth
+
+      - name: 패키지 배포
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

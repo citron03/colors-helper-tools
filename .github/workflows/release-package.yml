@@ -11,12 +11,22 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 14
       - run: npm ci
       - run: npm test
 
-  publish-gpr:
+  login-npm:
     needs: build
+    steps:
+      - name: npm install pacakges
+        run: npm install
+      - name: build npm packages
+        run: npm run build
+      - name: try npm login
+        run: npm login --registry=https://registry.npmjs.org/ --scope=@your-scope --always-auth
+
+  publish-gpr:
+    needs: login-npm
     runs-on: ubuntu-latest
     permissions:
       packages: write
