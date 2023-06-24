@@ -131,3 +131,6 @@ out
 
 # examples
 examples/
+
+# Github Actions
+release-package.yml
