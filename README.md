@@ -141,3 +141,8 @@ for (let i = 0; i < 10; i++) {
 - <a href="./examples/jsx_inline_example.tsx">jsx_inline</a>
 - <a href="./examples/react_memo_example.tsx">react_memo</a>
 - <a href="./examples/complementary_example.tsx">complementary_color</a>
+
+#### ETC
+
+- git push github action config example
+  - <a href="./examples/push_example.yml">push_example.yml</a>
