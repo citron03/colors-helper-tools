@@ -148,7 +148,7 @@ export function getColorByStepRgbGen(
       } else {
         throw Error('unexpected RGB order');
       }
-      yield color;
+      yield { ...color };
     }
   };
 }
