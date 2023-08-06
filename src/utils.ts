@@ -72,7 +72,7 @@ function toRgb(hex: string): Color {
  * @returns boolean
  */
 function checkRangeColor(num: number) {
-  return num <= 255 && num >= 0;
+  return Number.isInteger(num) && num <= 255 && num >= 0;
 }
 
 export { getRandomNumber, toRgb, toHex, toHexColor, checkRangeColor };

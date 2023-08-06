@@ -12,7 +12,7 @@ import {
   pasteltoneRgb,
 } from '../index';
 import { RandomColorType } from '../src/types';
-import { toRgb } from '../src/utils';
+import { checkRangeColor, toRgb } from '../src/utils';
 
 const testHex = '#ff00ff';
 
@@ -27,39 +27,80 @@ describe('Test colors-helper-tools functions', () => {
     expect(hex).toEqual('#00ff00');
   });
 
-  test('getRandomColorHex', () => {
-    const randomHex = getRandomColorHex();
-    expect(randomHex).toEqual(randomHex);
+  const hexColorRegex = /^#([0-9A-F]{6})$/i; // hes color string regex
+
+  it('잘못된 hex 색상 문자열인지 검증', () => {
+    const result = getRandomColorHex(); // a 함수 호출
+
+    // 틀린 예시로 검증
+    const incorrectHexColor = '#ZZZZZZ';
+
+    expect(result).not.toEqual(incorrectHexColor);
   });
 
-  test('randomRgb', () => {
+  test('get Random Color Hex', () => {
+    const randomHex = getRandomColorHex();
+    expect(randomHex).toMatch(hexColorRegex);
+  });
+
+  test('get Random Colot Rgb', () => {
     const randomRgb = getRandomColorRgb();
-    expect(randomRgb).toEqual(randomRgb);
+    expect(randomRgb).toEqual(
+      expect.objectContaining({
+        red: expect.any(Number),
+        green: expect.any(Number),
+        blue: expect.any(Number),
+      }),
+    );
+
+    expect(checkRangeColor(randomRgb.red)).toBe(true);
+    expect(checkRangeColor(randomRgb.green)).toBe(true);
+    expect(checkRangeColor(randomRgb.blue)).toBe(true);
   });
 
   test('randomRedColorHex red', () => {
-    const randomRgb = getRandomColorHex(RandomColorType.red);
-    expect(randomRgb).toEqual(randomRgb);
+    const randomHex = getRandomColorHex(RandomColorType.red);
+    expect(randomHex).toMatch(hexColorRegex);
   });
 
   test('pastelColorRgb', () => {
     const pastelColorRgb = pasteltoneRgb();
-    expect(pastelColorRgb).toEqual(pastelColorRgb);
+    expect(pastelColorRgb).toEqual(
+      expect.objectContaining({
+        red: expect.any(Number),
+        green: expect.any(Number),
+        blue: expect.any(Number),
+      }),
+    );
+
+    expect(checkRangeColor(pastelColorRgb.red)).toBe(true);
+    expect(checkRangeColor(pastelColorRgb.green)).toBe(true);
+    expect(checkRangeColor(pastelColorRgb.blue)).toBe(true);
   });
 
   test('pastelColorHex', () => {
     const pastelColorHex = pasteltoneHex();
-    expect(pastelColorHex).toEqual(pastelColorHex);
+    expect(pastelColorHex).toMatch(hexColorRegex);
   });
 
   test('neutralColorRgb', () => {
     const neutralColorRgb = neutraltoneRgb();
-    expect(neutralColorRgb).toEqual(neutralColorRgb);
+    expect(neutralColorRgb).toEqual(
+      expect.objectContaining({
+        red: expect.any(Number),
+        green: expect.any(Number),
+        blue: expect.any(Number),
+      }),
+    );
+
+    expect(checkRangeColor(neutralColorRgb.red)).toBe(true);
+    expect(checkRangeColor(neutralColorRgb.green)).toBe(true);
+    expect(checkRangeColor(neutralColorRgb.blue)).toBe(true);
   });
 
   test('neutralColorHex', () => {
     const neutralColorHex = neutraltoneHex();
-    expect(neutralColorHex).toEqual(neutralColorHex);
+    expect(neutralColorHex).toMatch(hexColorRegex);
   });
 
   test('getColorByStepRgbGen', () => {

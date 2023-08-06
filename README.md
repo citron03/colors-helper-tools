@@ -18,6 +18,12 @@ $ npm install --save colors-helper-tools
 $ yarn add colors-helper-tools
 ```
 
+## test functions
+
+```bash
+$ npm run test
+```
+
 ### return types are Hex string or Color type
 
 ```typescript
