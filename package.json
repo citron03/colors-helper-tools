@@ -1,9 +1,12 @@
 {
   "name": "colors-helper-tools",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "help use color style ✨",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "get": "dist/src/cli.js"
+  },
   "scripts": {
     "build": "tsc",
     "test": "jest"
@@ -36,5 +39,8 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
   }
 }
