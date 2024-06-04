@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 import { getRandomColorHex, getRandomColorRgb } from '..';
 
-const packageJsonPath = path.join(__dirname, '../package.json');
+// const packageJsonPath = path.join(__dirname, '../package.json');
 
-const packageJsonData = fs.readFileSync(packageJsonPath, 'utf-8');
-const packageJsonObject = JSON.parse(packageJsonData);
-const version = packageJsonObject.version;
+// const packageJsonData = fs.readFileSync(packageJsonPath, 'utf-8');
+// const packageJsonObject = JSON.parse(packageJsonData);
+// const version = packageJsonObject.version;
 
 const program = new Command();
+const version = '1.5.9';
 
 program
   .name('colors-helper-tools')

@@ -24,6 +24,14 @@ $ yarn add colors-helper-tools
 $ npm run test
 ```
 
+## CLI
+
+- you can get random colors with cli
+
+```sh
+npx cht -h
+```
+
 ### return types are Hex string or Color type
 
 ```typescript
