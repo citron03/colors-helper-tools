@@ -10,7 +10,7 @@ import {
   neutraltoneRgb,
   pasteltoneHex,
   pasteltoneRgb,
-} from '../index';
+} from '../src/index'; // Ensure that cli is not included in the test environment
 import { RandomColorType } from '../src/types';
 import { checkRangeColor, toRgb } from '../src/utils';
 

@@ -2,6 +2,7 @@
 
 import { Command } from 'commander';
 import { getRandomColorRgb, getRandomColorHex } from '.';
+import { VERSION } from './constant';
 // import fs from 'fs';
 // import path from 'path';
 
@@ -12,12 +13,11 @@ import { getRandomColorRgb, getRandomColorHex } from '.';
 // const version = packageJsonObject.version;
 
 const program = new Command();
-const version = '1.5.9';
 
 program
   .name('colors-helper-tools')
   .description('colors-helper-tools helps you control colors !')
-  .version(`colors-helper-tools version 🎶 ${version}`);
+  .version(`colors-helper-tools version 🎶 ${VERSION}`);
 
 program
   .command('random')
