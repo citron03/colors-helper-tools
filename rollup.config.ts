@@ -1,22 +1,21 @@
 import { defineConfig } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
-import json from '@rollup/plugin-json';
-import terser from '@rollup/plugin-terser';
 
 export default defineConfig({
-  input: 'index.ts',
-  output: [
-    {
-      file: 'dist/index.js',
-      format: 'cjs',
-      minifyInternalExports: true,
-    },
-    {
-      file: 'dist/index.min.js',
-      format: 'iife',
-      name: 'version',
-      plugins: [terser()],
-    },
+  input: {
+    index: 'index.ts',
+    cli: 'src/cli.ts',
+  },
+  output: {
+    dir: 'dist',
+    format: 'cjs',
+    minifyInternalExports: true,
+  },
+  plugins: [
+    typescript({
+      declaration: true,
+      declarationDir: 'dist/types',
+      exclude: ['node_modules/**'],
+    }),
   ],
-  plugins: [typescript(), json()],
 });
