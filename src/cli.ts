@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
+import { getRandomColorRgb, getRandomColorHex } from '.';
 // import fs from 'fs';
 // import path from 'path';
-import { getRandomColorHex, getRandomColorRgb } from '..';
 
 // const packageJsonPath = path.join(__dirname, '../package.json');
 
