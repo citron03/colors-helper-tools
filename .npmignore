@@ -134,6 +134,3 @@ examples/
 
 # Github Actions
 release-package.yml
-
-#src
-src/
