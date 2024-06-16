@@ -138,3 +138,5 @@ release-package.yml
 # only dist
 /src
 !/dist/src
+index.ts
+/test
