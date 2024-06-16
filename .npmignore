@@ -134,3 +134,7 @@ examples/
 
 # Github Actions
 release-package.yml
+
+# only dist
+/src
+!/dist/src

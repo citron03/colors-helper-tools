@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { Color } from './types';
 
 /**
@@ -75,4 +76,39 @@ function checkRangeColor(num: number) {
   return Number.isInteger(num) && num <= 255 && num >= 0;
 }
 
-export { getRandomNumber, toRgb, toHex, toHexColor, checkRangeColor };
+/**
+ *
+ * @param prefix file name prefix
+ * @param extension file_name.extension
+ * @returns file name String
+ */
+const generateFileName = (prefix: string, extension: string): string => {
+  const now = new Date();
+  const timestamp = now.toISOString().replace(/[:.]/g, '-');
+  return `${prefix}-${timestamp}.${extension}`;
+};
+
+/**
+ *
+ * @param filePath file output path
+ * @param content String to output
+ */
+const writeStringToFile = (filePath: string, content: string): void => {
+  fs.writeFile(filePath, content, err => {
+    if (err) {
+      console.error('Error writing to file:', err);
+    } else {
+      console.log('File has been written successfully.');
+    }
+  });
+};
+
+export {
+  getRandomNumber,
+  toRgb,
+  toHex,
+  toHexColor,
+  checkRangeColor,
+  writeStringToFile,
+  generateFileName,
+};

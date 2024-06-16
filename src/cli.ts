@@ -3,6 +3,7 @@
 import { Command } from 'commander';
 import { getRandomColorRgb, getRandomColorHex } from '.';
 import { VERSION } from './constant';
+import { generateFileName, writeStringToFile } from './utils';
 // import fs from 'fs';
 // import path from 'path';
 
@@ -24,6 +25,7 @@ program
   .description('Get Random N Colors (default HEX)')
   .argument('[number]', 'number you want to get (default 1)', '1')
   .option('-r, --rgb', 'get rgb colors')
+  .option('-f, --file', 'get rgb colors')
   .action((number, options) => {
     const isRgb = !!options.rgb;
     const colors = [];
@@ -37,7 +39,12 @@ program
       }
       colors.push(color);
     }
-    console.log(colors.join(' '));
+    if (options.file) {
+      const fileName = generateFileName('random', 'txt');
+      writeStringToFile(`./${fileName}`, colors.join('\n'));
+    } else {
+      console.log(colors.join(' '));
+    }
   });
 
 program.parse();
