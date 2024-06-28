@@ -1,50 +1,24 @@
 {
-  "name": "colors-helper-tools",
-  "version": "1.6.9",
-  "description": "help use color style ✨",
-  "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
-  "bin": {
-    "cht": "dist/cli.js"
-  },
+  "name": "monorepo",
+  "private": true,
   "scripts": {
-    "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "build:tsc": "tsc",
-    "test": "jest"
+    "start": "turbo start",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/citron03/colors-helper-tools.git"
-  },
-  "keywords": [
-    "color",
-    "css",
-    "hex",
-    "random"
-  ],
-  "author": "citron03",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/citron03/colors-helper-tools/issues"
-  },
-  "homepage": "https://github.com/citron03/colors-helper-tools#readme",
   "devDependencies": {
-    "@babel/cli": "^7.22.9",
-    "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
-    "@babel/preset-typescript": "^7.22.5",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@types/jest": "^29.5.3",
-    "jest": "^29.6.2",
-    "rollup": "^4.18.0",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.6.3",
-    "typescript": "^5.0.4"
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.5",
+    "typescript": "^5.4.5"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
-  "dependencies": {
-    "commander": "^12.1.0"
-  }
+  "packageManager": "npm@10.2.3",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
