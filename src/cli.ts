@@ -49,4 +49,4 @@ program
 
 program.parse();
 
-export default {};
+export {};

@@ -15,7 +15,7 @@ export default defineConfig({
       minifyInternalExports: true,
       sourcemap: true,
       entryFileNames: '[name].cjs', // 또는 [name].[format].js 같은 방식으로 설정 가능
-      exports: 'default',
+      exports: 'auto',
     },
     {
       dir: 'dist',
@@ -23,6 +23,7 @@ export default defineConfig({
       minifyInternalExports: true,
       sourcemap: true,
       entryFileNames: '[name].mjs',
+      exports: 'auto',
     },
   ],
   plugins: [

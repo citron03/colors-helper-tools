@@ -22,7 +22,7 @@ import {
   generateFileName,
 } from './src/utils';
 
-export default {
+export {
   complementaryColorRgb,
   complementaryColorHex,
   getRandomColorRgb,
