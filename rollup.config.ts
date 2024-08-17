@@ -1,4 +1,6 @@
 import { defineConfig } from 'rollup';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 
 export default defineConfig({
@@ -23,6 +25,11 @@ export default defineConfig({
     },
   ],
   plugins: [
+    resolve(),
+    commonjs({
+      // CommonJS 모듈을 ESM으로 변환할 때 필요한 설정
+      include: 'node_modules/**',
+    }),
     typescript({
       declaration: true,
       declarationDir: 'dist/types',
