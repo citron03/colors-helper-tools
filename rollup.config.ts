@@ -6,11 +6,22 @@ export default defineConfig({
     index: 'index.ts',
     cli: 'src/cli.ts',
   },
-  output: {
-    dir: 'dist',
-    format: 'cjs',
-    minifyInternalExports: true,
-  },
+  output: [
+    {
+      dir: 'dist',
+      format: 'cjs',
+      minifyInternalExports: true,
+      sourcemap: true,
+      entryFileNames: '[name].mjs', // 또는 [name].[format].js 같은 방식으로 설정 가능
+    },
+    {
+      dir: 'dist',
+      format: 'es',
+      minifyInternalExports: true,
+      sourcemap: true,
+      entryFileNames: '[name].mjs', // 또는 [name].[format].js 같은 방식으로 설정 가능
+    },
+  ],
   plugins: [
     typescript({
       declaration: true,
