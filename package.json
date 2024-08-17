@@ -1,13 +1,14 @@
 {
   "name": "colors-helper-tools",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "help use color style ✨",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "types": "./dist/types/index.d.ts"
     }
   },
   "types": "dist/types/index.d.ts",
