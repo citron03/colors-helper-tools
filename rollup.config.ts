@@ -29,8 +29,10 @@ export default defineConfig({
     commonjs({
       // CommonJS 모듈을 ESM으로 변환할 때 필요한 설정
       include: 'node_modules/**',
+      esmExternals: true
     }),
     typescript({
+      tsconfig: './tsconfig.json',
       declaration: true,
       declarationDir: 'dist/types',
       exclude: ['node_modules/**'],
