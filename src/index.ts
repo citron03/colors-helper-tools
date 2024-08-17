@@ -6,7 +6,7 @@ import { checkRangeColor, getRandomNumber, toHexColor, toRgb } from './utils';
  * @param rgb color rgb object
  * @returns complementary color rgb object
  */
-export function complementaryColorRgb(rgb: Color): Color {
+function complementaryColorRgb(rgb: Color): Color {
   const complementaryColor = {
     red: 255 - rgb.red,
     green: 255 - rgb.green,
@@ -20,7 +20,7 @@ export function complementaryColorRgb(rgb: Color): Color {
  * @param hex hex string
  * @returns complementary color hex string
  */
-export function complementaryColorHex(hex: string): string {
+function complementaryColorHex(hex: string): string {
   const rgb = toRgb(hex);
   const complementaryColor = {
     red: 255 - rgb.red,
@@ -41,7 +41,7 @@ export function complementaryColorHex(hex: string): string {
  * @param RandomColorType red / green / blue / all
  * @returns random hex color object
  */
-export function getRandomColorRgb(
+function getRandomColorRgb(
   colorType: RandomColorType = RandomColorType.all,
 ): Color {
   // default all random
@@ -66,7 +66,7 @@ export function getRandomColorRgb(
  * @param RandomColorType red / green / blue / all
  * @returns random hex color string
  */
-export function getRandomColorHex(
+function getRandomColorHex(
   colorType: RandomColorType = RandomColorType.all,
 ): string {
   // default all random
@@ -78,7 +78,7 @@ export function getRandomColorHex(
  * get random pastel tone color rgb (207 ~ 255)
  * @returns {red, green, blue}
  */
-export function pasteltoneRgb(): Color {
+function pasteltoneRgb(): Color {
   const red = getRandomNumber(207, 255);
   const green = getRandomNumber(207, 255);
   const blue = getRandomNumber(207, 255);
@@ -89,7 +89,7 @@ export function pasteltoneRgb(): Color {
  * get random pastel tone color hex string (207 ~ 255)
  * @returns pastel tone color hex string
  */
-export function pasteltoneHex(): string {
+function pasteltoneHex(): string {
   const pastelRgb = pasteltoneRgb();
   return toHexColor(pastelRgb.red, pastelRgb.green, pastelRgb.blue);
 }
@@ -98,7 +98,7 @@ export function pasteltoneHex(): string {
  * get random neutral tone color rgb same (r, g, b)
  * @returns {red, green, blue}
  */
-export function neutraltoneRgb(): Color {
+function neutraltoneRgb(): Color {
   const color = getRandomNumber(0, 255);
   return { red: color, green: color, blue: color };
 }
@@ -107,7 +107,7 @@ export function neutraltoneRgb(): Color {
  * get random neutral tone color hex string same (r, g, b)
  * @returns neutral tone color hex string
  */
-export function neutraltoneHex(): string {
+function neutraltoneHex(): string {
   const color = getRandomNumber(0, 255);
   return toHexColor(color, color, color);
 }
@@ -117,7 +117,7 @@ export function neutraltoneHex(): string {
  * @param step Takes a step(number) and returns a generator function
  * @returns Returns the generator function. Each time the generator function is called, it returns a Color rgb object that is as dark as the input step.
  */
-export function getColorByStepRgbGen(
+function getColorByStepRgbGen(
   step: number,
 ): () => Generator<Color, never, unknown> {
   if (step > 255) {
@@ -153,7 +153,7 @@ export function getColorByStepRgbGen(
  * @param step Input the step(number) to be used in the generator function.
  * @returns Automatically returns a progressively darker Color rgb object when calling the function so that you can use this feature without understanding generator functions.
  */
-export function getColorByStepRgb(step: number = 5) {
+function getColorByStepRgb(step: number = 5) {
   const generator = getColorByStepRgbGen(step)();
   return function () {
     return generator.next().value;
@@ -165,7 +165,7 @@ export function getColorByStepRgb(step: number = 5) {
  * @param step Takes a step(number) and returns a generator function
  * @returns Returns the generator function. Each time the generator function is called, it returns a color hex string that is as dark as the input step.
  */
-export function getColorByStepHexGen(
+function getColorByStepHexGen(
   step: number,
 ): () => Generator<string, never, unknown> {
   if (step > 255) {
@@ -201,9 +201,24 @@ export function getColorByStepHexGen(
  * @param step Input the step(number) to be used in the generator function.
  * @returns Automatically returns a progressively darker color hex string when calling the function so that you can use this feature without understanding generator functions.
  */
-export function getColorByStepHex(step: number = 5) {
+function getColorByStepHex(step: number = 5) {
   const generator = getColorByStepHexGen(step)();
   return function () {
     return generator.next().value;
   };
 }
+
+export {
+  complementaryColorRgb,
+  complementaryColorHex,
+  getRandomColorRgb,
+  getRandomColorHex,
+  pasteltoneRgb,
+  pasteltoneHex,
+  neutraltoneRgb,
+  neutraltoneHex,
+  getColorByStepRgbGen,
+  getColorByStepRgb,
+  getColorByStepHexGen,
+  getColorByStepHex,
+};

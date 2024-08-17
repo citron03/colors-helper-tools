@@ -48,3 +48,5 @@ program
   });
 
 program.parse();
+
+export default {};

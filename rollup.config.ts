@@ -15,6 +15,7 @@ export default defineConfig({
       minifyInternalExports: true,
       sourcemap: true,
       entryFileNames: '[name].cjs', // 또는 [name].[format].js 같은 방식으로 설정 가능
+      exports: 'default',
     },
     {
       dir: 'dist',
@@ -29,7 +30,6 @@ export default defineConfig({
     commonjs({
       // CommonJS 모듈을 ESM으로 변환할 때 필요한 설정
       include: 'node_modules/**',
-      esmExternals: true
     }),
     typescript({
       tsconfig: './tsconfig.json',

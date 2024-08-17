@@ -1,2 +1,45 @@
-export * from './src/index';
-export * from './src/utils';
+import {
+  complementaryColorRgb,
+  complementaryColorHex,
+  getRandomColorRgb,
+  getRandomColorHex,
+  pasteltoneRgb,
+  pasteltoneHex,
+  neutraltoneRgb,
+  neutraltoneHex,
+  getColorByStepRgbGen,
+  getColorByStepRgb,
+  getColorByStepHexGen,
+  getColorByStepHex,
+} from './src/index';
+import {
+  getRandomNumber,
+  toRgb,
+  toHex,
+  toHexColor,
+  checkRangeColor,
+  writeStringToFile,
+  generateFileName,
+} from './src/utils';
+
+export default {
+  complementaryColorRgb,
+  complementaryColorHex,
+  getRandomColorRgb,
+  getRandomColorHex,
+  pasteltoneRgb,
+  pasteltoneHex,
+  neutraltoneRgb,
+  neutraltoneHex,
+  getColorByStepRgbGen,
+  getColorByStepRgb,
+  getColorByStepHexGen,
+  getColorByStepHex,
+  getRandomNumber,
+  toRgb,
+  toHex,
+  toHexColor,
+  checkRangeColor,
+  writeStringToFile,
+  generateFileName,
+};
