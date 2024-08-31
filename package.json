@@ -1,6 +1,6 @@
 {
   "name": "colors-helper-tools",
-  "version": "1.7.9",
+  "version": "1.7.10",
   "description": "help use color style ✨",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -13,7 +13,8 @@
   },
   "types": "dist/types/index.d.ts",
   "bin": {
-    "cht": "dist/cli.cjs"
+    "cht": "dist/cli.cjs",
+    "colors-helper-tools": "dist/cli.cjs"
   },
   "scripts": {
     "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
