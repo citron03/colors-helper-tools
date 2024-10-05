@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
+import { input, select, confirm } from '@inquirer/prompts';
+
 import { getRandomColorRgb, getRandomColorHex } from '.';
 import { VERSION } from './constant';
 import { generateFileName, writeStringToFile } from './utils';
+
 // import fs from 'fs';
 // import path from 'path';
 
@@ -42,6 +45,51 @@ program
     if (options.file) {
       const fileName = generateFileName('random', 'txt');
       writeStringToFile(`./${fileName}`, colors.join('\n'));
+    } else {
+      console.log(colors.join(' '));
+    }
+  });
+
+program
+  .command('get_random')
+  .description('Get Random N Colors by inquiry')
+  .action(async () => {
+    // Step-by-step prompts using individual calls to input/select/confirm
+    const number = await input({
+      message: 'How many colors do you want to generate? (default is 1)',
+      default: '1',
+    });
+
+    const format = await select({
+      message: 'Which color format do you want?',
+      choices: [
+        { name: 'HEX', value: 'HEX' },
+        { name: 'RGB', value: 'RGB' },
+      ],
+    });
+
+    const saveToFile = await confirm({
+      message: 'Do you want to save the colors to a file?',
+      default: false,
+    });
+
+    const colors = [];
+    const count = parseInt(number, 10);
+    for (let i = 0; i < count; i++) {
+      let color;
+      if (format === 'RGB') {
+        const rgb = getRandomColorRgb();
+        color = `rgb: ${rgb.red} ${rgb.green} ${rgb.blue}`;
+      } else {
+        color = getRandomColorHex();
+      }
+      colors.push(color);
+    }
+
+    if (saveToFile) {
+      const fileName = generateFileName('random', 'txt');
+      writeStringToFile(`./${fileName}`, colors.join('\n'));
+      console.log(`Colors saved to ${fileName}`);
     } else {
       console.log(colors.join(' '));
     }
