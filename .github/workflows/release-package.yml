@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 22
+          cache: 'pnpm'
+          pnpm-version: 'latest'
       - run: pnpm install --frozen-lockfile
         working-directory: ./
       - run: pnpm --filter colors-helper-tools test
@@ -31,6 +33,8 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
+          cache: 'pnpm'
+          pnpm-version: 'latest'
       - run: pnpm install --frozen-lockfile
         working-directory: ./
       - run: pnpm --filter colors-helper-tools publish --no-git-checks
