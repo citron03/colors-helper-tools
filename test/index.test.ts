@@ -1,4 +1,4 @@
-import {
+import cht, {
   complementaryColorHex,
   darkenHex,
   darkenRgb,
@@ -169,5 +169,64 @@ describe('Test lighten/darken functions', () => {
   test('darken black should be black', () => {
     const darkened = darkenHex('#000000', 0.2);
     expect(darkened).toBe('#000000');
+  });
+});
+
+describe('Test Chainable API', () => {
+  test('instantiate and output', () => {
+    const color = cht('#ff0000');
+    expect(color.hex()).toBe('#ff0000');
+    expect(color.rgb()).toEqual({ red: 255, green: 0, blue: 0 });
+  });
+
+  test('lighten', () => {
+    const lightened = cht('#808080').lighten(0.2).hex();
+    expect(lightened).toBe('#b3b3b3');
+  });
+
+  test('darken', () => {
+    const darkened = cht('#808080').darken(0.2).hex();
+    expect(darkened).toBe('#4d4d4d');
+  });
+
+  test('complementary', () => {
+    const comp = cht('#ff0000').complementary().hex();
+    expect(comp).toBe('#00ffff');
+  });
+
+  test('full chain', () => {
+    const result = cht('#ff0000').darken(0.1).complementary().lighten(0.2).hex();
+    expect(result).toBe('#99ffff');
+  });
+
+  test('monochromatic palette', () => {
+    const palette = cht('#ff0000').palette('monochromatic', 4);
+    const hexPalette = palette.map(c => c.hex());
+    expect(hexPalette.length).toBe(4);
+    expect(hexPalette).toEqual(['#660000', '#cc0000', '#ff3333', '#ff9999']);
+  });
+
+  test('complementary palette', () => {
+    const palette = cht('#ff0000').palette('complementary');
+    const hexPalette = palette.map(c => c.hex());
+    expect(hexPalette).toEqual(['#ff0000', '#00ffff']);
+  });
+
+  test('analogous palette', () => {
+    const palette = cht('#ff0000').palette('analogous');
+    const hexPalette = palette.map(c => c.hex());
+    expect(hexPalette).toEqual(['#ff0000', '#ff8000', '#ff0080']);
+  });
+
+  test('triadic palette', () => {
+    const palette = cht('#ff0000').palette('triadic');
+    const hexPalette = palette.map(c => c.hex());
+    expect(hexPalette).toEqual(['#ff0000', '#00ff00', '#0000ff']);
+  });
+
+  test('split-complementary palette', () => {
+    const palette = cht('#ff0000').palette('split-complementary');
+    const hexPalette = palette.map(c => c.hex());
+    expect(hexPalette).toEqual(['#ff0000', '#00ff80', '#0080ff']);
   });
 });

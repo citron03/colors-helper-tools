@@ -137,25 +137,44 @@ function rgbToHsl(rgb: Color): HslColor {
 }
 
 function hslToRgb(hsl: HslColor): Color {
+  const { h, s, l } = hsl;
   let r, g, b;
 
-  if (hsl.s === 0) {
-    r = g = b = hsl.l; // achromatic
+  if (s === 0) {
+    r = g = b = l; // achromatic
   } else {
-    const hue2rgb = (p: number, q: number, t: number) => {
-      if (t < 0) t += 1;
-      if (t > 1) t -= 1;
-      if (t < 1 / 6) return p + (q - p) * 6 * t;
-      if (t < 1 / 2) return q;
-      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-      return p;
-    };
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs(((h * 6) % 2) - 1));
+    const m = l - c / 2;
 
-    const q = hsl.l < 0.5 ? hsl.l * (1 + hsl.s) : hsl.l + hsl.s - hsl.l * hsl.s;
-    const p = 2 * hsl.l - q;
-    r = hue2rgb(p, q, hsl.h + 1 / 3);
-    g = hue2rgb(p, q, hsl.h);
-    b = hue2rgb(p, q, hsl.h - 1 / 3);
+    if (h >= 0 && h < 1 / 6) {
+      r = c;
+      g = x;
+      b = 0;
+    } else if (h >= 1 / 6 && h < 2 / 6) {
+      r = x;
+      g = c;
+      b = 0;
+    } else if (h >= 2 / 6 && h < 3 / 6) {
+      r = 0;
+      g = c;
+      b = x;
+    } else if (h >= 3 / 6 && h < 4 / 6) {
+      r = 0;
+      g = x;
+      b = c;
+    } else if (h >= 4 / 6 && h < 5 / 6) {
+      r = x;
+      g = 0;
+      b = c;
+    } else {
+      r = c;
+      g = 0;
+      b = x;
+    }
+    r = r + m;
+    g = g + m;
+    b = b + m;
   }
 
   return {

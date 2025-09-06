@@ -16,58 +16,66 @@ $ yarn add colors-helper-tools
 
 ## Quick Start
 
-Easily manipulate colors to fit your design needs.
+Meet the new, intuitive and chainable API. This is the recommended way to use the library.
 
 ```ts
-import { lightenHex, complementaryColorHex } from 'colors-helper-tools';
+import cht from 'colors-helper-tools';
 
 const primaryColor = '#8A2BE2'; // BlueViolet
 
-// Get a 20% lighter version of your color
-const lightenedColor = lightenHex(primaryColor, 0.2);
-console.log(lightenedColor); // '#a85ee8'
+// Chain methods to get the perfect color
+const newColor = cht(primaryColor)
+  .lighten(0.1)
+  .complementary()
+  .darken(0.05)
+  .hex();
 
-// Get the complementary color
-const complementary = complementaryColorHex(primaryColor);
-console.log(complementary); // '#75e22b'
+console.log(newColor); // e.g., '#84e85a'
 ```
 
 ## API Reference
 
-All functions are available for both Hex strings and RGB color objects (e.g., `lightenHex` and `lightenRgb`).
+The primary export is the `cht` factory function, which creates a new color object that you can chain methods on.
 
-### Color Generation
+`cht(color: string | { red: number, green: number, blue: number })`
 
-- `getRandomColorHex()` / `getRandomColorRgb()`: Generates a completely random color.
-  - Optional `RandomColorType` parameter (`red`, `green`, `blue`) can be passed to get a color within that specific range.
+### Chained Methods
 
-- `pasteltoneHex()` / `pasteltoneRgb()`: Generates a random, soft pastel color.
+These methods modify the color and return the instance for further chaining.
 
-- `neutraltoneHex()` / `neutraltoneRgb()`: Generates a random neutral grayscale color.
+- `.lighten(amount: number)`: Makes the color lighter. `amount` is from 0 to 1.
+- `.darken(amount: number)`: Makes the color darker. `amount` is from 0 to 1.
+- `.complementary()`: Converts the color to its complementary color.
+- `.palette(type, count)`: Generates a palette of colors. 
+  - `type`: `'monochromatic'`, `'complementary'`, `'analogous'`, `'triadic'`, `'split-complementary'`.
+  - `count`: The number of colors for the palette (only for `monochromatic`).
 
-### Color Manipulation
-
-- `lightenHex(hex, amount)` / `lightenRgb(rgb, amount)`: Makes a color lighter. `amount` is a value from 0 to 1.
   ```ts
-  const lighterRed = lightenHex('#ff0000', 0.2); // '#ff6666'
+  const triadicPalette = cht('#ff0000').palette('triadic');
+  // Returns an array of Cht objects: [red, green, blue]
   ```
 
-- `darkenHex(hex, amount)` / `darkenRgb(rgb, amount)`: Makes a color darker. `amount` is a value from 0 to 1.
+### Output Methods
 
-### Color Relationships
+These methods return the final color value in the desired format.
 
-- `complementaryColorHex(hex)` / `complementaryColorRgb(rgb)`: Returns the complementary color.
+- `.hex()`: Returns the color as a hex string (e.g., `#ffffff`).
+- `.rgb()`: Returns the color as an RGB object (e.g., `{ red: 255, green: 255, blue: 255 }`).
 
-### Advanced Utilities
+---
 
-- `getColorByStepHex(step)` / `getColorByStepRgb(step)`: Returns a function that provides a new color on each call, incrementing by the given `step` value. Useful for generating procedural color schemes without using generators directly.
-  ```ts
-  const getNextColor = getColorByStepHex(50);
-  console.log(getNextColor()); // '#320000'
-  console.log(getNextColor()); // '#323200'
-  ```
+### Standalone Functions (Legacy)
 
-- `getColorByStepHexGen(step)` / `getColorByStepRgbGen(step)`: Returns a generator function that yields a new color on each call, incrementing by the given `step`.
+These functions are still available but the new chainable API is recommended.
+
+- `lightenHex(hex, amount)` / `lightenRgb(rgb, amount)`
+- `darkenHex(hex, amount)` / `darkenRgb(rgb, amount)`
+- `complementaryColorHex(hex)` / `complementaryColorRgb(rgb)`
+- `getRandomColorHex()` / `getRandomColorRgb()`
+- `pasteltoneHex()` / `pasteltoneRgb()`
+- `neutraltoneHex()` / `neutraltoneRgb()`
+- `getColorByStepHex(step)` / `getColorByStepRgb(step)`
+- `getColorByStepHexGen(step)` / `getColorByStepRgbGen(step)`
 
 ## Command Line Interface (CLI)
 

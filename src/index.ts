@@ -1,3 +1,4 @@
+import Cht from './color';
 import { Color, HslColor, RandomColorType, RgbOrder } from './types';
 import {
   checkRangeColor,
@@ -242,6 +243,10 @@ function darkenHex(hex: string, amount: number): string {
   const newRgb = hslToRgb(hsl);
   return toHexColor(newRgb.red, newRgb.green, newRgb.blue);
 }
+
+const cht = (color: string | Color): Cht => new Cht(color);
+
+export default cht;
 
 export {
   complementaryColorRgb,

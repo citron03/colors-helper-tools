@@ -1,0 +1,10 @@
+- write english
+- use feat, fix, docs, style, refactor, perf, test, chore, revert, ci, build
+- use present tense
+- use imperative mood
+- limit subject line to 50 characters
+- capitalize subject line
+- do not end subject line with a period
+- separate subject from body with a blank line
+- wrap body at 72 characters
+- use the body to explain what and why vs. how
