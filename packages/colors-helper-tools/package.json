@@ -1,6 +1,6 @@
 {
   "name": "colors-helper-tools",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "private": true,
   "description": "help use color style ✨",
   "main": "dist/index.cjs",
@@ -47,6 +47,7 @@
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-typescript": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
