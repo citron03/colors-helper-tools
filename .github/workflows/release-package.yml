@@ -35,6 +35,8 @@ jobs:
       - run: corepack enable pnpm
       - run: pnpm install --frozen-lockfile
         working-directory: ./
+      - run: pnpm --filter colors-helper-tools build
+        working-directory: ./
       - run: pnpm --filter colors-helper-tools publish --no-git-checks
         working-directory: ./packages/colors-helper-tools
         env:
