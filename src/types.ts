@@ -19,4 +19,10 @@ type HslColor = {
   l: number;
 };
 
-export { Color, RandomColorType, RgbOrder, HslColor };
+type HsvColor = {
+  h: number;
+  s: number;
+  v: number;
+};
+
+export { Color, RandomColorType, RgbOrder, HslColor, HsvColor };

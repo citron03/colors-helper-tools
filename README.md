@@ -12,6 +12,9 @@ $ npm install --save colors-helper-tools
 
 # yarn
 $ yarn add colors-helper-tools
+
+# pnpm
+$ pnpm add colors-helper-tools
 ```
 
 ## Quick Start
@@ -72,6 +75,8 @@ These methods return the final color value in the desired format.
 
 - `.hex()`: Returns the color as a hex string (e.g., `#ffffff`).
 - `.rgb()`: Returns the color as an RGB object (e.g., `{ red: 255, green: 255, blue: 255 }`).
+- `.hsl()`: Returns the color as an HSL object (e.g., `{ h: 0.5, s: 1, l: 0.5 }`).
+- `.hsv()`: Returns the color as an HSV object (e.g., `{ h: 0.5, s: 1, v: 0.5 }`).
 
 ---
 
@@ -98,7 +103,22 @@ npx cht -h
 
 # Generate a random color
 npx cht random
+
+# Generate a triadic palette from a base color
+npx cht palette triadic #ff0000
+
+# Calculate contrast ratio between two colors
+npx cht contrast #ffffff #000000
+
+# Convert a color to HSL format
+npx cht convert #3498db --to hsl
 ```
+
+## Documentation
+
+For comprehensive guides, API references, and examples, please visit our official documentation site.
+
+[Visit Documentation](https://your-docusaurus-site.example.com)
 
 ## Examples
 

@@ -1,5 +1,5 @@
 import { Color as ColorType } from './types';
-import { toRgb, toHexColor, rgbToHsl, hslToRgb, getLuminance } from './utils';
+import { toRgb, toHexColor, rgbToHsl, hslToRgb, getLuminance, rgbToHsv, hsvToRgb } from './utils';
 
 // Helper to check if a value is a hex string
 function isHex(value: any): value is string {
@@ -31,6 +31,20 @@ class Cht {
    */
   hex(): string {
     return toHexColor(this._rgb.red, this._rgb.green, this._rgb.blue);
+  }
+
+  /**
+   * Returns the color as an HSL object.
+   */
+  hsl(): HslColor {
+    return rgbToHsl(this._rgb);
+  }
+
+  /**
+   * Returns the color as an HSV object.
+   */
+  hsv(): HsvColor {
+    return rgbToHsv(this._rgb);
   }
 
   /**
@@ -77,7 +91,7 @@ class Cht {
    * @returns An array of new Cht instances.
    */
   palette(
-    type: 'monochromatic' | 'complementary' | 'analogous' | 'triadic' | 'split-complementary',
+    type: 'monochromatic' | 'complementary' | 'analogous' | 'triadic' | 'split-complementary' | 'shades' | 'tints' | 'tones',
     count: number = 3
   ): Cht[] {
     const palette: Cht[] = [new Cht(this.rgb())];
@@ -89,6 +103,30 @@ class Cht {
         for (let i = 0; i < count; i++) {
           const lightness = (i + 1) / (count + 1);
           palette.push(new Cht(hslToRgb({ ...baseHsl, l: lightness })));
+        }
+        break;
+
+      case 'shades':
+        palette.length = 0; // Reset
+        for (let i = 0; i < count; i++) {
+          const lightness = baseHsl.l * (1 - (i / count));
+          palette.push(new Cht(hslToRgb({ ...baseHsl, l: lightness })));
+        }
+        break;
+
+      case 'tints':
+        palette.length = 0; // Reset
+        for (let i = 0; i < count; i++) {
+          const lightness = baseHsl.l + (1 - baseHsl.l) * (i / count);
+          palette.push(new Cht(hslToRgb({ ...baseHsl, l: lightness })));
+        }
+        break;
+
+      case 'tones':
+        palette.length = 0; // Reset
+        for (let i = 0; i < count; i++) {
+          const saturation = baseHsl.s * (1 - (i / count));
+          palette.push(new Cht(hslToRgb({ ...baseHsl, s: saturation })));
         }
         break;
 

@@ -3,18 +3,9 @@
 import { Command } from 'commander';
 import { input, select, confirm } from '@inquirer/prompts';
 
-import { getRandomColorRgb, getRandomColorHex } from '.';
+import cht, { getRandomColorRgb, getRandomColorHex } from '.';
 import { VERSION } from './constant';
 import { generateFileName, writeStringToFile } from './utils';
-
-// import fs from 'fs';
-// import path from 'path';
-
-// const packageJsonPath = path.join(__dirname, '../package.json');
-
-// const packageJsonData = fs.readFileSync(packageJsonPath, 'utf-8');
-// const packageJsonObject = JSON.parse(packageJsonData);
-// const version = packageJsonObject.version;
 
 const program = new Command();
 
@@ -92,6 +83,60 @@ program
       console.log(`Colors saved to ${fileName}`);
     } else {
       console.log(colors.join(' '));
+    }
+  });
+
+program
+  .command('palette <type> <color>')
+  .description('Generate a color palette')
+  .argument('[count]', 'Number of colors for monochromatic palette (default 3)', '3')
+  .action((type, color, count) => {
+    try {
+      const palette = cht(color).palette(type, parseInt(count, 10));
+      console.log(palette.map(c => c.hex()).join(' '));
+    } catch (error) {
+      console.error(`Error generating palette: ${error.message}`);
+    }
+  });
+
+program
+  .command('contrast <color1> <color2>')
+  .description('Calculate contrast ratio between two colors')
+  .action((color1, color2) => {
+    try {
+      const ratio = cht(color1).contrast(color2);
+      console.log(`Contrast Ratio: ${ratio.toFixed(2)}`);
+    } catch (error) {
+      console.error(`Error calculating contrast: ${error.message}`);
+    }
+  });
+
+program
+  .command('convert <color>')
+  .description('Convert color to a specified format')
+  .option('--to <format>', 'Format to convert to (hex, rgb, hsl)', 'hex')
+  .action((color, options) => {
+    try {
+      let convertedColor;
+      const chtColor = cht(color);
+      switch (options.to) {
+        case 'hex':
+          convertedColor = chtColor.hex();
+          break;
+        case 'rgb':
+          const rgb = chtColor.rgb();
+          convertedColor = `rgb(${rgb.red}, ${rgb.green}, ${rgb.blue})`;
+          break;
+        case 'hsl':
+          const hsl = chtColor.hsl();
+          convertedColor = `hsl(${Math.round(hsl.h * 360)}, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
+          break;
+        default:
+          throw new Error('Invalid format. Use hex, rgb, or hsl.');
+      }
+      console.log(convertedColor);
+    } catch (error) {
+      console.error(`Error converting color: ${error.message}`);
     }
   });
 

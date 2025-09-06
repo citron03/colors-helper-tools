@@ -177,6 +177,18 @@ describe('Test Chainable API', () => {
     const color = cht('#ff0000');
     expect(color.hex()).toBe('#ff0000');
     expect(color.rgb()).toEqual({ red: 255, green: 0, blue: 0 });
+    const hsl = color.hsl();
+    expect(hsl.h).toBeCloseTo(0);
+    expect(hsl.s).toBeCloseTo(1);
+    expect(hsl.l).toBeCloseTo(0.5);
+  });
+
+  test('hsv output', () => {
+    const color = cht('#ff0000');
+    const hsv = color.hsv();
+    expect(hsv.h).toBeCloseTo(0);
+    expect(hsv.s).toBeCloseTo(1);
+    expect(hsv.v).toBeCloseTo(1);
   });
 
   test('lighten', () => {
@@ -239,5 +251,23 @@ describe('Test Chainable API', () => {
     expect(white.contrast(black)).toBeCloseTo(21);
     expect(white.contrast('#ffffff')).toBeCloseTo(1);
     expect(red.contrast(blue)).toBeCloseTo(2.1489);
+  });
+
+  test('shades palette', () => {
+    const palette = cht('#3498db').palette('shades', 3);
+    const hexPalette = palette.map(c => c.hex());
+    expect(hexPalette).toEqual(['#3498db', '#1b6799', '#0e334d']);
+  });
+
+  test('tints palette', () => {
+    const palette = cht('#3498db').palette('tints', 3);
+    const hexPalette = palette.map(c => c.hex());
+    expect(hexPalette).toEqual(['#3498db', '#78bae7', '#bbddf3']);
+  });
+
+  test('tones palette', () => {
+    const palette = cht('#3498db').palette('tones', 3);
+    const hexPalette = palette.map(c => c.hex());
+    expect(hexPalette).toEqual(['#3498db', '#5093bf', '#6c8da3']);
   });
 });

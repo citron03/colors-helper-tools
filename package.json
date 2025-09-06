@@ -1,6 +1,7 @@
 {
   "name": "colors-helper-tools",
   "version": "1.8.0",
+  "private": true,
   "description": "help use color style ✨",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -22,6 +23,10 @@
     "test": "jest",
     "prepare": "husky install"
   },
+  "workspaces": [
+    ".",
+    "docs"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/citron03/colors-helper-tools.git"
@@ -48,6 +53,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/jest": "^29.5.3",
+    "clsx": "^2.1.1",
     "husky": "^8.0.0",
     "jest": "^29.6.2",
     "lint-staged": "^15.3.0",

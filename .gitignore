@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# colors-helper-tools specific
+/dist
+/docs/.vitepress/dist
+/docs/.vitepress/cache
+/docs/node_modules
