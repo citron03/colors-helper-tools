@@ -1,7 +1,7 @@
 {
   "name": "colors-helper-tools",
-  "version": "2.0.6",
-  "private": true,
+  "version": "2.0.7",
+  
   "description": "help use color style ✨",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
