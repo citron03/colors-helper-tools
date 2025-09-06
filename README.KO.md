@@ -1,23 +1,25 @@
-# 🎨 colors-helper-tools
+# 🎨 colors-helper-tools 모노레포
 
-색상 조작 및 생성에 필요한 모든 것을 위한 가볍고 강력한 TypeScript 라이브러리입니다. 개발을 더욱 다채롭게 만드세요! ✨
+이것은 `colors-helper-tools` 라이브러리와 해당 문서 웹사이트를 포함하는 모노레포입니다.
 
 [![npm version](https://badge.fury.io/js/colors-helper-tools.svg)](https://badge.fury.io/js/colors-helper-tools)
 
+## 모노레포 구조
+
+- `packages/colors-helper-tools`: 핵심 색상 조작 라이브러리입니다.
+- `packages/docs`: Next.js로 구축된 문서 웹사이트입니다.
+
 ## 설치
 
+모노레포를 설정하려면 저장소를 복제하고 pnpm을 사용하여 종속성을 설치하십시오:
+
 ```bash
-# npm
-$ npm install --save colors-helper-tools
-
-# yarn
-$ yarn add colors-helper-tools
-
-# pnpm
-$ pnpm add colors-helper-tools
+git clone https://github.com/citron03/colors-helper-tools.git
+cd colors-helper-tools
+pnpm install
 ```
 
-## 빠른 시작
+## 빠른 시작 (colors-helper-tools 라이브러리)
 
 새롭고 직관적인 체인형 API를 만나보세요. 이 라이브러리를 사용하는 권장 방법입니다.
 
@@ -33,7 +35,7 @@ const newColor = cht(primaryColor)
   .darken(0.05)
   .hex();
 
-console.log(newColor); // 예: '#84e85a'
+console.log(newColor); // 예: 'e.g., #84e85a'
 ```
 
 ## API 참조
@@ -49,7 +51,7 @@ console.log(newColor); // 예: '#84e85a'
 - `.lighten(amount: number)`: 색상을 더 밝게 만듭니다. `amount`는 0에서 1 사이입니다.
 - `.darken(amount: number)`: 색상을 더 어둡게 만듭니다. `amount`는 0에서 1 사이입니다.
 - `.complementary()`: 색상을 보색으로 변환합니다.
-- `.palette(type, count)`: 색상 팔레트를 생성합니다. 
+- `.palette(type, count)`: 색상 팔레트를 생성합니다.
   - `type`: `'monochromatic'`, `'complementary'`, `'analogous'`, `'triadic'`, `'split-complementary'`.
   - `count`: 팔레트의 색상 수 (단색 팔레트에만 해당).
 
@@ -97,36 +99,39 @@ console.log(newColor); // 예: '#84e85a'
 
 이 패키지에는 터미널에서 빠른 색상 작업을 위한 편리한 CLI도 포함되어 있습니다.
 
+모노레포 루트에서 CLI를 실행하려면:
+
 ```sh
 # 도움말 보기
-npx cht -h
+pnpm --filter colors-helper-tools cht -h
 
 # 무작위 색상 생성
-npx cht random
+pnpm --filter colors-helper-tools cht random
 
 # 기본 색상에서 삼색 팔레트 생성
-npx cht palette triadic #ff0000
+pnpm --filter colors-helper-tools cht palette triadic #ff0000
 
 # 두 색상 간의 대비 비율 계산
-npx cht contrast #ffffff #000000
+pnpm --filter colors-helper-tools cht contrast #ffffff #000000
 
 # 색상을 HSL 형식으로 변환
-npx cht convert #3498db --to hsl
+pnpm --filter colors-helper-tools cht convert #3498db --to hsl
 ```
 
-## 문서
+## 문서 웹사이트
 
-포괄적인 가이드, API 참조 및 예제는 공식 문서 사이트를 방문하십시오.
+문서 웹사이트는 `packages/docs`에 있습니다. 로컬에서 실행하려면:
 
-[문서 방문](https://your-docusaurus-site.example.com)
+```bash
+cd packages/docs
+pnpm dev
+```
+
+포괄적인 가이드, API 참조 및 예제는 공식 문서 웹사이트를 방문하십시오. (배포되면 링크가 업데이트됩니다)
 
 ## 예제
 
-다양한 환경에서의 실제 사용 예제를 참조하십시오:
-- <a href="./examples/emotion_example.tsx">Emotion (CSS-in-JS)</a>
-- <a href="./examples/jsx_inline_example.tsx">React 인라인 스타일</a>
-- <a href="./examples/react_memo_example.tsx">`React.memo`를 사용한 React</a>
-- <a href="./examples/complementary_example.tsx">보색</a>
+예제는 이제 문서 웹사이트에 통합되었습니다. 사용 예제는 문서 웹사이트를 참조하십시오.
 
 ## 라이선스
 
