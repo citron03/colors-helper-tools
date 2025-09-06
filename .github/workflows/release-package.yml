@@ -14,6 +14,7 @@ jobs:
           node-version: 22
           cache: 'pnpm'
           pnpm-version: 'latest'
+      - run: npm install -g pnpm
       - run: pnpm install --frozen-lockfile
         working-directory: ./
       - run: pnpm --filter colors-helper-tools test
@@ -35,6 +36,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: 'pnpm'
           pnpm-version: 'latest'
+      - run: npm install -g pnpm
       - run: pnpm install --frozen-lockfile
         working-directory: ./
       - run: pnpm --filter colors-helper-tools publish --no-git-checks
