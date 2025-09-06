@@ -1,12 +1,8 @@
 # 🎨 colors-helper-tools
 
-We help you use color.
+A lightweight and powerful TypeScript library for all your color manipulation and generation needs. Make your development more colorful! ✨
 
-## Version Info
-
-| version | node version |
-| ------- | ------------ |
-| 1.0.0+  | 14+          |
+[![npm version](https://badge.fury.io/js/colors-helper-tools.svg)](https://badge.fury.io/js/colors-helper-tools)
 
 ## Installation
 
@@ -18,145 +14,81 @@ $ npm install --save colors-helper-tools
 $ yarn add colors-helper-tools
 ```
 
-## test functions
+## Quick Start
 
-```bash
-$ npm run test
+Easily manipulate colors to fit your design needs.
+
+```ts
+import { lightenHex, complementaryColorHex } from 'colors-helper-tools';
+
+const primaryColor = '#8A2BE2'; // BlueViolet
+
+// Get a 20% lighter version of your color
+const lightenedColor = lightenHex(primaryColor, 0.2);
+console.log(lightenedColor); // '#a85ee8'
+
+// Get the complementary color
+const complementary = complementaryColorHex(primaryColor);
+console.log(complementary); // '#75e22b'
 ```
 
-## CLI
+## API Reference
 
-- you can get random colors with cli
+All functions are available for both Hex strings and RGB color objects (e.g., `lightenHex` and `lightenRgb`).
+
+### Color Generation
+
+- `getRandomColorHex()` / `getRandomColorRgb()`: Generates a completely random color.
+  - Optional `RandomColorType` parameter (`red`, `green`, `blue`) can be passed to get a color within that specific range.
+
+- `pasteltoneHex()` / `pasteltoneRgb()`: Generates a random, soft pastel color.
+
+- `neutraltoneHex()` / `neutraltoneRgb()`: Generates a random neutral grayscale color.
+
+### Color Manipulation
+
+- `lightenHex(hex, amount)` / `lightenRgb(rgb, amount)`: Makes a color lighter. `amount` is a value from 0 to 1.
+  ```ts
+  const lighterRed = lightenHex('#ff0000', 0.2); // '#ff6666'
+  ```
+
+- `darkenHex(hex, amount)` / `darkenRgb(rgb, amount)`: Makes a color darker. `amount` is a value from 0 to 1.
+
+### Color Relationships
+
+- `complementaryColorHex(hex)` / `complementaryColorRgb(rgb)`: Returns the complementary color.
+
+### Advanced Utilities
+
+- `getColorByStepHex(step)` / `getColorByStepRgb(step)`: Returns a function that provides a new color on each call, incrementing by the given `step` value. Useful for generating procedural color schemes without using generators directly.
+  ```ts
+  const getNextColor = getColorByStepHex(50);
+  console.log(getNextColor()); // '#320000'
+  console.log(getNextColor()); // '#323200'
+  ```
+
+- `getColorByStepHexGen(step)` / `getColorByStepRgbGen(step)`: Returns a generator function that yields a new color on each call, incrementing by the given `step`.
+
+## Command Line Interface (CLI)
+
+This package also includes a handy CLI for quick color operations right in your terminal.
 
 ```sh
+# Get help
 npx cht -h
+
+# Generate a random color
+npx cht random
 ```
 
-### return types are Hex string or Color type
+## Examples
 
-```typescript
-type Color = {
-  red: number;
-  green: number;
-  blue: number;
-};
-```
+See real-world usage examples for different environments:
+- <a href="./examples/emotion_example.tsx">Emotion (CSS-in-JS)</a>
+- <a href="./examples/jsx_inline_example.tsx">React Inline Styles</a>
+- <a href="./examples/react_memo_example.tsx">React with `React.memo`</a>
+- <a href="./examples/complementary_example.tsx">Complementary Colors</a>
 
-## functions
+## License
 
-### toRgb
-
-- hex color string to rgb object
-
-### toHex
-
-- make number to hex string
-
-### toHexColor
-
-- make numbers to hex color string
-
-### complementaryColorHex
-
-- get complementary color hex string
-
-### complementaryColorRgb
-
-- get complementary color object
-
-### random color parms options (enum)
-
-```ts
-export enum RandomColorType {
-  red = 'red',
-  green = 'green',
-  blue = 'blue',
-  all = 'all',
-}
-```
-
-### getRandomColorHex
-
-- get random color hex string
-- give params (red, green, blue) to get concrete random color hex
-
-### getRandomColorRgb
-
-- get random color object
-- give params (red, green, blue) to get concrete random color object
-
-### pasteltoneRgb
-
-- get random pastel tone color
-- return Color type
-
-### pasteltoneHex
-
-- get random pastel tone color
-- return hex string
-
-### neutraltoneRgb
-
-- get random neutral tone color
-- return Color type
-
-### neutraltoneHex
-
-- get random neutral tone color
-- return hex string
-
-### getColorByStepRgbGen
-
-- Returns a generator function that sequentially intensifies the returned Color object
-
-```ts
-const fn = getColorByStepRgbGen(50)(); // generator
-for (let i = 0; i < 10; i++) {
-  console.log(fn.next().value); // Color object
-}
-```
-
-### getColorByStepHexGen
-
-- Returns a generator function that sequentially intensifies the returned color hex string
-
-```ts
-const fn = getColorByStepHexGen(50)(); // generator
-for (let i = 0; i < 10; i++) {
-  console.log(fn.next().value); // hex string
-}
-```
-
-### getColorByStepRgb
-
-- You can use getColorByStepRgbGen without understanding generator functions.
-
-```ts
-const fn = getColorByStepRgb(50); // function
-for (let i = 0; i < 10; i++) {
-  console.log(fn()); // Color object
-}
-```
-
-### getColorByStepHex
-
-- You can use getColorByStepHexGen without understanding generator functions.
-
-```ts
-const fn = getColorByStepHex(50); // function
-for (let i = 0; i < 10; i++) {
-  console.log(fn()); // hex string
-}
-```
-
-#### 🎈 examples
-
-- <a href="./examples/emotion_example.tsx">emotion</a>
-- <a href="./examples/jsx_inline_example.tsx">jsx_inline</a>
-- <a href="./examples/react_memo_example.tsx">react_memo</a>
-- <a href="./examples/complementary_example.tsx">complementary_color</a>
-
-#### ETC
-
-- git push github action config example
-  - <a href="./examples/push_example.yml">push_example.yml</a>
+This project is licensed under the [MIT License](./LICENSE).

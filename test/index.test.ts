@@ -1,11 +1,15 @@
 import {
   complementaryColorHex,
+  darkenHex,
+  darkenRgb,
   getColorByStepHex,
   getColorByStepHexGen,
   getColorByStepRgb,
   getColorByStepRgbGen,
   getRandomColorHex,
   getRandomColorRgb,
+  lightenHex,
+  lightenRgb,
   neutraltoneHex,
   neutraltoneRgb,
   pasteltoneHex,
@@ -133,5 +137,37 @@ describe('Test colors-helper-tools functions', () => {
     const second = simpleGenHex();
     expect(first).toEqual('#640000');
     expect(second).toEqual('#646400');
+  });
+});
+
+describe('Test lighten/darken functions', () => {
+  test('lightenHex', () => {
+    const lightened = lightenHex('#808080', 0.2);
+    expect(lightened).toBe('#b3b3b3');
+  });
+
+  test('darkenHex', () => {
+    const darkened = darkenHex('#808080', 0.2);
+    expect(darkened).toBe('#4d4d4d');
+  });
+
+  test('lightenRgb', () => {
+    const lightened = lightenRgb({ red: 0, green: 0, blue: 0 }, 0.5);
+    expect(lightened).toEqual({ red: 128, green: 128, blue: 128 });
+  });
+
+  test('darkenRgb', () => {
+    const darkened = darkenRgb({ red: 255, green: 255, blue: 255 }, 0.5);
+    expect(darkened).toEqual({ red: 128, green: 128, blue: 128 });
+  });
+
+  test('lighten white should be white', () => {
+    const lightened = lightenHex('#ffffff', 0.2);
+    expect(lightened).toBe('#ffffff');
+  });
+
+  test('darken black should be black', () => {
+    const darkened = darkenHex('#000000', 0.2);
+    expect(darkened).toBe('#000000');
   });
 });

@@ -1,5 +1,12 @@
-import { Color, RandomColorType, RgbOrder } from './types';
-import { checkRangeColor, getRandomNumber, toHexColor, toRgb } from './utils';
+import { Color, HslColor, RandomColorType, RgbOrder } from './types';
+import {
+  checkRangeColor,
+  getRandomNumber,
+  hslToRgb,
+  rgbToHsl,
+  toHexColor,
+  toRgb,
+} from './utils';
 
 /**
  * get complementary color object
@@ -208,6 +215,34 @@ function getColorByStepHex(step: number = 5) {
   };
 }
 
+function lightenRgb(rgb: Color, amount: number): Color {
+  const hsl = rgbToHsl(rgb);
+  hsl.l = Math.min(1, hsl.l + amount);
+  return hslToRgb(hsl);
+}
+
+function lightenHex(hex: string, amount: number): string {
+  const rgb = toRgb(hex);
+  const hsl = rgbToHsl(rgb);
+  hsl.l = Math.min(1, hsl.l + amount);
+  const newRgb = hslToRgb(hsl);
+  return toHexColor(newRgb.red, newRgb.green, newRgb.blue);
+}
+
+function darkenRgb(rgb: Color, amount: number): Color {
+  const hsl = rgbToHsl(rgb);
+  hsl.l = Math.max(0, hsl.l - amount);
+  return hslToRgb(hsl);
+}
+
+function darkenHex(hex: string, amount: number): string {
+  const rgb = toRgb(hex);
+  const hsl = rgbToHsl(rgb);
+  hsl.l = Math.max(0, hsl.l - amount);
+  const newRgb = hslToRgb(hsl);
+  return toHexColor(newRgb.red, newRgb.green, newRgb.blue);
+}
+
 export {
   complementaryColorRgb,
   complementaryColorHex,
@@ -221,4 +256,8 @@ export {
   getColorByStepRgb,
   getColorByStepHexGen,
   getColorByStepHex,
+  lightenRgb,
+  lightenHex,
+  darkenRgb,
+  darkenHex,
 };
