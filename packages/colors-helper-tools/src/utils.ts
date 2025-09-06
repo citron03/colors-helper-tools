@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { Color, HslColor } from './types';
+import { Color, HslColor, HsvColor } from './types';
 
 /**
  *
@@ -94,7 +94,7 @@ const generateFileName = (prefix: string, extension: string): string => {
  * @param content String to output
  */
 const writeStringToFile = (filePath: string, content: string): void => {
-  fs.writeFile(filePath, content, err => {
+  fs.writeFile(filePath, content, (err: NodeJS.ErrnoException | null) => {
     if (err) {
       console.error('Error writing to file:', err);
     } else {

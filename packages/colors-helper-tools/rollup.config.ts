@@ -26,11 +26,16 @@ export default defineConfig({
     },
   ],
   plugins: [
-    resolve(),
+    resolve({
+      mainFields: ['main', 'module'],
+      preferBuiltins: true,
+    }),
     json(),
     commonjs({
       // CommonJS 모듈을 ESM으로 변환할 때 필요한 설정
       include: 'node_modules/**',
+      transformMixedEsModules: true,
+      requireReturnsDefault: 'auto',
     }),
     typescript({
       tsconfig: './tsconfig.json',

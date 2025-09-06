@@ -1,23 +1,25 @@
-# 🎨 colors-helper-tools
+# 🎨 colors-helper-tools Monorepo
 
-A lightweight and powerful TypeScript library for all your color manipulation and generation needs. Make your development more colorful! ✨
+This is a monorepo containing the `colors-helper-tools` library and its documentation site.
 
 [![npm version](https://badge.fury.io/js/colors-helper-tools.svg)](https://badge.fury.io/js/colors-helper-tools)
 
+## Monorepo Structure
+
+- `packages/colors-helper-tools`: The core color manipulation library.
+- `packages/docs`: The documentation website built with Next.js.
+
 ## Installation
 
+To set up the monorepo, clone the repository and install dependencies using pnpm:
+
 ```bash
-# npm
-$ npm install --save colors-helper-tools
-
-# yarn
-$ yarn add colors-helper-tools
-
-# pnpm
-$ pnpm add colors-helper-tools
+git clone https://github.com/citron03/colors-helper-tools.git
+cd colors-helper-tools
+pnpm install
 ```
 
-## Quick Start
+## Quick Start (colors-helper-tools library)
 
 Meet the new, intuitive and chainable API. This is the recommended way to use the library.
 
@@ -33,7 +35,7 @@ const newColor = cht(primaryColor)
   .darken(0.05)
   .hex();
 
-console.log(newColor); // e.g., '#84e85a'
+console.log(newColor); // e.g., 'e.g., #84e85a'
 ```
 
 ## API Reference
@@ -49,7 +51,7 @@ These methods modify the color and return the instance for further chaining.
 - `.lighten(amount: number)`: Makes the color lighter. `amount` is from 0 to 1.
 - `.darken(amount: number)`: Makes the color darker. `amount` is from 0 to 1.
 - `.complementary()`: Converts the color to its complementary color.
-- `.palette(type, count)`: Generates a palette of colors. 
+- `.palette(type, count)`: Generates a palette of colors.
   - `type`: `'monochromatic'`, `'complementary'`, `'analogous'`, `'triadic'`, `'split-complementary'`.
   - `count`: The number of colors for the palette (only for `monochromatic`).
 
@@ -97,36 +99,39 @@ These functions are still available but the new chainable API is recommended.
 
 This package also includes a handy CLI for quick color operations right in your terminal.
 
+To run the CLI from the monorepo root:
+
 ```sh
 # Get help
-npx cht -h
+pnpm --filter colors-helper-tools cht -h
 
 # Generate a random color
-npx cht random
+pnpm --filter colors-helper-tools cht random
 
 # Generate a triadic palette from a base color
-npx cht palette triadic #ff0000
+pnpm --filter colors-helper-tools cht palette triadic #ff0000
 
 # Calculate contrast ratio between two colors
-npx cht contrast #ffffff #000000
+pnpm --filter colors-helper-tools cht contrast #ffffff #000000
 
 # Convert a color to HSL format
-npx cht convert #3498db --to hsl
+pnpm --filter colors-helper-tools cht convert #3498db --to hsl
 ```
 
-## Documentation
+## Documentation Site
 
-For comprehensive guides, API references, and examples, please visit our official documentation site.
+The documentation site is located in `packages/docs`. To run it locally:
 
-[Visit Documentation](https://your-docusaurus-site.example.com)
+```bash
+cd packages/docs
+pnpm dev
+```
+
+For comprehensive guides, API references, and examples, please visit our official documentation site. (Link will be updated once deployed)
 
 ## Examples
 
-See real-world usage examples for different environments:
-- <a href="./examples/emotion_example.tsx">Emotion (CSS-in-JS)</a>
-- <a href="./examples/jsx_inline_example.tsx">React Inline Styles</a>
-- <a href="./examples/react_memo_example.tsx">React with `React.memo`</a>
-- <a href="./examples/complementary_example.tsx">Complementary Colors</a>
+Examples are now integrated into the documentation site. Please refer to the documentation site for usage examples.
 
 ## License
 

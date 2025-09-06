@@ -1,4 +1,4 @@
-import { Color as ColorType } from './types';
+import { Color as ColorType, HslColor, HsvColor } from './types';
 import { toRgb, toHexColor, rgbToHsl, hslToRgb, getLuminance, rgbToHsv, hsvToRgb } from './utils';
 
 // Helper to check if a value is a hex string
