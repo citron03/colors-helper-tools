@@ -55,6 +55,17 @@ These methods modify the color and return the instance for further chaining.
   // Returns an array of Cht objects: [red, green, blue]
   ```
 
+### Analysis Methods
+
+- `.contrast(anotherColor)`: Calculates the WCAG contrast ratio between the current color and another. Returns a value from 1 to 21.
+  - `anotherColor`: Can be a hex string, an RGB object, or another Cht instance.
+
+  ```ts
+  const white = cht('#FFFFFF');
+  const black = cht('#000000');
+  const ratio = white.contrast(black); // 21
+  ```
+
 ### Output Methods
 
 These methods return the final color value in the desired format.

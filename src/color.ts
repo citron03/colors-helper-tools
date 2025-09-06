@@ -1,5 +1,5 @@
 import { Color as ColorType } from './types';
-import { toRgb, toHexColor, rgbToHsl, hslToRgb } from './utils';
+import { toRgb, toHexColor, rgbToHsl, hslToRgb, getLuminance } from './utils';
 
 // Helper to check if a value is a hex string
 function isHex(value: any): value is string {
@@ -116,6 +116,22 @@ class Cht {
     }
 
     return palette;
+  }
+
+  /**
+   * Calculates the contrast ratio between the current color and another color.
+   * @param anotherColor The color to compare against.
+   * @returns The contrast ratio (1 to 21).
+   */
+  contrast(anotherColor: Cht | string | ColorType): number {
+    const other = anotherColor instanceof Cht ? anotherColor : new Cht(anotherColor);
+    const lum1 = getLuminance(this._rgb);
+    const lum2 = getLuminance(other.rgb());
+
+    const lighter = Math.max(lum1, lum2);
+    const darker = Math.min(lum1, lum2);
+
+    return (lighter + 0.05) / (darker + 0.05);
   }
 }
 

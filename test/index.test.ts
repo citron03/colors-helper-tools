@@ -229,4 +229,15 @@ describe('Test Chainable API', () => {
     const hexPalette = palette.map(c => c.hex());
     expect(hexPalette).toEqual(['#ff0000', '#00ff80', '#0080ff']);
   });
+
+  test('contrast ratio', () => {
+    const white = cht('#ffffff');
+    const black = cht('#000000');
+    const red = cht('#ff0000');
+    const blue = cht('#0000ff');
+
+    expect(white.contrast(black)).toBeCloseTo(21);
+    expect(white.contrast('#ffffff')).toBeCloseTo(1);
+    expect(red.contrast(blue)).toBeCloseTo(2.1489);
+  });
 });
