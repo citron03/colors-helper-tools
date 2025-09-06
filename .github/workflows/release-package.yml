@@ -12,8 +12,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 22
-          cache: 'pnpm'
-          pnpm-version: 'latest'
       - run: corepack enable pnpm
       - run: pnpm install --frozen-lockfile
         working-directory: ./
@@ -34,8 +32,6 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
-          cache: 'pnpm'
-          pnpm-version: 'latest'
       - run: corepack enable pnpm
       - run: pnpm install --frozen-lockfile
         working-directory: ./
