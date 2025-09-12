@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "build": "pnpm -r build",
-    "test": "pnpm -r test"
+    "test": "pnpm -r test",
+    "cht": "pnpm --filter colors-helper-tools",
+    "clean": "rm -rf node_modules && pnpm -r exec rm -rf node_modules dist && pnpm store prune"
   },
   "devDependencies": {
     "@types/node": "^20.19.13",

@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -14,7 +15,7 @@ export default defineConfig({
       dir: 'dist',
       format: 'cjs',
       sourcemap: true,
-      entryFileNames: '[name].cjs', // 또는 [name].[format].js 같은 방식으로 설정 가능
+      entryFileNames: '[name].cjs',
       exports: 'auto',
     },
     {
@@ -32,10 +33,8 @@ export default defineConfig({
     }),
     json(),
     commonjs({
-      // CommonJS 모듈을 ESM으로 변환할 때 필요한 설정
       include: 'node_modules/**',
       transformMixedEsModules: true,
-      requireReturnsDefault: 'auto',
     }),
     typescript({
       tsconfig: './tsconfig.json',

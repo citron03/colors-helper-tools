@@ -1,4 +1,5 @@
-import cht, {
+import {
+  cht,
   complementaryColorHex,
   darkenHex,
   darkenRgb,
@@ -255,7 +256,7 @@ describe('Test Chainable API', () => {
 
   test('shades palette', () => {
     const palette = cht('#3498db').palette('shades', 3);
-    const hexPalette = palette.map(c => c.hex());
+    const hexPalette = palette.map((c) => c.hex());
     expect(hexPalette).toEqual(['#3498db', '#1b6799', '#0e334d']);
   });
 

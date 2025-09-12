@@ -4,11 +4,11 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
 
-import cht, { getRandomColorRgb, getRandomColorHex } from '.';
+import { cht, getRandomColorRgb, getRandomColorHex } from '.';
 import { VERSION } from './constant';
 import { generateFileName, writeStringToFile } from './utils';
-import * as readlineSync from 'readline-sync';
-import prompts from 'prompts';
+const readlineSync = require('readline-sync');
+const prompts = require('prompts');
 
 
 yargs(hideBin(process.argv))

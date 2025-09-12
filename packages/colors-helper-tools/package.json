@@ -1,6 +1,6 @@
 {
   "name": "colors-helper-tools",
-  "version": "2.0.9",
+  "version": "2.1.0",
   "description": "help use color style ✨",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -67,6 +67,7 @@
   },
   "dependencies": {
     "yargs": "^17.0.0",
-    "readline-sync": "^1.4.10"
+    "readline-sync": "^1.4.10",
+    "prompts": "^2.4.2"
   }
 }

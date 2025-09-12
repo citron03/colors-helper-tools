@@ -3,6 +3,7 @@ import * as cht from 'colors-helper-tools';
 
 export default function App() {
   const bgColor = cht.pasteltoneHex();
+  const fontColor = '#333';
   return (
     <div>
       <button

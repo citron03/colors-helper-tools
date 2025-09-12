@@ -246,9 +246,8 @@ function darkenHex(hex: string, amount: number): string {
 
 const cht = (color: string | Color): Cht => new Cht(color);
 
-export default cht;
-
 export {
+  cht,
   complementaryColorRgb,
   complementaryColorHex,
   getRandomColorRgb,
