@@ -137,12 +137,6 @@ importers:
         specifier: ^5.0.0
         version: 5.9.2
 
-  test-project:
-    dependencies:
-      colors-helper-tools:
-        specifier: file:../colors-helper-tools-2.1.1.tgz
-        version: file:colors-helper-tools-2.1.1.tgz
-
 packages:
 
   '@alloc/quick-lru@5.2.0':
@@ -1768,12 +1762,6 @@ packages:
 
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
-
-  colors-helper-tools@file:colors-helper-tools-2.1.1.tgz:
-    resolution: {integrity: sha512-tZ/uch5TTL7FknsWmED1dizvYyMWBxMKt3SLGugTBH3K5QOzKhGW39Y76XtcpPU6tWhnJY/RqKLTxDzm6c0+/w==, tarball: file:colors-helper-tools-2.1.1.tgz}
-    version: 2.1.1
-    engines: {node: '>=14'}
-    hasBin: true
 
   commander@13.1.0:
     resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
@@ -5626,12 +5614,6 @@ snapshots:
   color-name@1.1.4: {}
 
   colorette@2.0.20: {}
-
-  colors-helper-tools@file:colors-helper-tools-2.1.1.tgz:
-    dependencies:
-      prompts: 2.4.2
-      readline-sync: 1.4.10
-      yargs: 17.7.2
 
   commander@13.1.0: {}
 
